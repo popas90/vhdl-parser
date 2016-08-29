@@ -1741,7 +1741,7 @@ class vhdlParser ( Parser ):
     RULE_quantity_declaration = 183
     RULE_quantity_list = 184
     RULE_quantity_specification = 185
-    RULE_range_type = 186
+    RULE_range_definition = 186
     RULE_explicit_range = 187
     RULE_range_constraint = 188
     RULE_record_nature_definition = 189
@@ -1876,25 +1876,26 @@ class vhdlParser ( Parser ):
                    "process_declarative_item", "process_declarative_part", 
                    "process_statement", "process_statement_part", "qualified_expression", 
                    "quantity_declaration", "quantity_list", "quantity_specification", 
-                   "range_type", "explicit_range", "range_constraint", "record_nature_definition", 
-                   "record_type_definition", "relation", "relational_operator", 
-                   "report_statement", "return_statement", "scalar_nature_definition", 
-                   "scalar_type_definition", "secondary_unit", "secondary_unit_declaration", 
-                   "selected_signal_assignment", "selected_waveforms", "sensitivity_clause", 
-                   "sensitivity_list", "sequence_of_statements", "sequential_statement", 
-                   "shift_expression", "shift_operator", "signal_assignment_statement", 
-                   "signal_declaration", "signal_kind", "signal_list", "signature", 
-                   "simple_expression", "simple_simultaneous_statement", 
-                   "simultaneous_alternative", "simultaneous_case_statement", 
-                   "simultaneous_if_statement", "simultaneous_procedural_statement", 
-                   "simultaneous_statement", "simultaneous_statement_part", 
-                   "source_aspect", "source_quantity_declaration", "step_limit_specification", 
-                   "subnature_declaration", "subnature_indication", "subprogram_body", 
-                   "subprogram_declaration", "subprogram_declarative_item", 
-                   "subprogram_declarative_part", "subprogram_kind", "subprogram_specification", 
-                   "procedure_specification", "function_specification", 
-                   "subprogram_statement_part", "subtype_declaration", "subtype_indication", 
-                   "suffix", "target", "term", "terminal_aspect", "terminal_declaration", 
+                   "range_definition", "explicit_range", "range_constraint", 
+                   "record_nature_definition", "record_type_definition", 
+                   "relation", "relational_operator", "report_statement", 
+                   "return_statement", "scalar_nature_definition", "scalar_type_definition", 
+                   "secondary_unit", "secondary_unit_declaration", "selected_signal_assignment", 
+                   "selected_waveforms", "sensitivity_clause", "sensitivity_list", 
+                   "sequence_of_statements", "sequential_statement", "shift_expression", 
+                   "shift_operator", "signal_assignment_statement", "signal_declaration", 
+                   "signal_kind", "signal_list", "signature", "simple_expression", 
+                   "simple_simultaneous_statement", "simultaneous_alternative", 
+                   "simultaneous_case_statement", "simultaneous_if_statement", 
+                   "simultaneous_procedural_statement", "simultaneous_statement", 
+                   "simultaneous_statement_part", "source_aspect", "source_quantity_declaration", 
+                   "step_limit_specification", "subnature_declaration", 
+                   "subnature_indication", "subprogram_body", "subprogram_declaration", 
+                   "subprogram_declarative_item", "subprogram_declarative_part", 
+                   "subprogram_kind", "subprogram_specification", "procedure_specification", 
+                   "function_specification", "subprogram_statement_part", 
+                   "subtype_declaration", "subtype_indication", "suffix", 
+                   "target", "term", "terminal_aspect", "terminal_declaration", 
                    "through_aspect", "timeout_clause", "tolerance_aspect", 
                    "type_declaration", "type_definition", "unconstrained_array_definition", 
                    "unconstrained_nature_definition", "use_clause", "variable_assignment_statement", 
@@ -7249,8 +7250,8 @@ class vhdlParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def range_type(self):
-            return self.getTypedRuleContext(vhdlParser.Range_typeContext,0)
+        def range_definition(self):
+            return self.getTypedRuleContext(vhdlParser.Range_definitionContext,0)
 
 
         def subtype_indication(self):
@@ -7282,7 +7283,7 @@ class vhdlParser ( Parser ):
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 1103
-                self.range_type()
+                self.range_definition()
                 pass
 
             elif la_ == 2:
@@ -15340,7 +15341,7 @@ class vhdlParser ( Parser ):
             self.exitRule()
         return localctx
 
-    class Range_typeContext(ParserRuleContext):
+    class Range_definitionContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -15355,23 +15356,23 @@ class vhdlParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return vhdlParser.RULE_range_type
+            return vhdlParser.RULE_range_definition
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRange_type" ):
-                listener.enterRange_type(self)
+            if hasattr( listener, "enterRange_definition" ):
+                listener.enterRange_definition(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRange_type" ):
-                listener.exitRange_type(self)
+            if hasattr( listener, "exitRange_definition" ):
+                listener.exitRange_definition(self)
 
 
 
 
-    def range_type(self):
+    def range_definition(self):
 
-        localctx = vhdlParser.Range_typeContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 372, self.RULE_range_type)
+        localctx = vhdlParser.Range_definitionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 372, self.RULE_range_definition)
         try:
             self.state = 2004
             self._errHandler.sync(self);
@@ -15457,8 +15458,8 @@ class vhdlParser ( Parser ):
         def RANGE(self):
             return self.getToken(vhdlParser.RANGE, 0)
 
-        def range_type(self):
-            return self.getTypedRuleContext(vhdlParser.Range_typeContext,0)
+        def range_definition(self):
+            return self.getTypedRuleContext(vhdlParser.Range_definitionContext,0)
 
 
         def getRuleIndex(self):
@@ -15484,7 +15485,7 @@ class vhdlParser ( Parser ):
             self.state = 2010
             self.match(vhdlParser.RANGE)
             self.state = 2011
-            self.range_type()
+            self.range_definition()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

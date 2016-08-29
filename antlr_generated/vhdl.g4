@@ -550,7 +550,7 @@ disconnection_specification
   ;
 
 discrete_range
-  : range_type
+  : range_definition
   | subtype_indication
   ;
 
@@ -1198,7 +1198,7 @@ quantity_specification
   : quantity_list COLON name
   ;
 
-range_type
+range_definition
   : explicit_range
   | name
   ;
@@ -1208,7 +1208,7 @@ explicit_range
   ;
 
 range_constraint
-  : RANGE range_type
+  : RANGE range_definition
   ;
 
 record_nature_definition

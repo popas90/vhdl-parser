@@ -1682,12 +1682,12 @@ class vhdlListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by vhdlParser#range_type.
-    def enterRange_type(self, ctx:vhdlParser.Range_typeContext):
+    # Enter a parse tree produced by vhdlParser#range_definition.
+    def enterRange_definition(self, ctx:vhdlParser.Range_definitionContext):
         pass
 
-    # Exit a parse tree produced by vhdlParser#range_type.
-    def exitRange_type(self, ctx:vhdlParser.Range_typeContext):
+    # Exit a parse tree produced by vhdlParser#range_definition.
+    def exitRange_definition(self, ctx:vhdlParser.Range_definitionContext):
         pass
 
 
