@@ -1,9 +1,11 @@
+*.class
+generated/java/
+nosetests.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-*.class
-generated
 
 # C extensions
 *.so
