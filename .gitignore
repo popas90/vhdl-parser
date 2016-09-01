@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.class
+antlr_generated
 
 # C extensions
 *.so
