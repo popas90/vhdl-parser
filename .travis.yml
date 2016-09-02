@@ -1,0 +1,13 @@
+sudo: false
+language: python
+python:
+  - "3.5"
+##Install dependencies
+install:
+  - pip install -r requirements.txt
+##Run tests
+script: nosetests
+notifications:
+  email:
+    on_success: never
+    on_failure: never
