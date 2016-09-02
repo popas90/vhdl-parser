@@ -6,7 +6,9 @@ python:
 install:
   - pip install -r requirements.txt
 ##Run tests
-script: flake8 -v --exclude=generated/,.git/,__pycache__ . && nosetests -v
+script:
+  - flake8 --exclude=generated/,.git/,__pycache__ .
+  - nosetests -v
 notifications:
   email:
     on_success: never
