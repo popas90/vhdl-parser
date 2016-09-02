@@ -1,22 +1,39 @@
-from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
-from generated.vhdlLexer import vhdlLexer
-from generated.vhdlParser import vhdlParser
-from generated.vhdlListener import vhdlListener
+from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker, InputStream
+from generated.VhdlLexer import VhdlLexer
+from generated.VhdlParser import VhdlParser
+from generated.VhdlListener import VhdlListener
 import nose
 
 
-def parse_file_setup(file_path):
-    inp = FileStream(file_path)
-    lexer = vhdlLexer(inp)
+def setup_listener(input_stream, start_rule):
+    lexer = VhdlLexer(input_stream)
     stream = CommonTokenStream(lexer)
-    parser = vhdlParser(stream)
-    listener = vhdlListener()
-    tree = parser.design_file()
+    parser = VhdlParser(stream)
+    listener = VhdlListener()
+    start_func = getattr(parser, start_rule)
+    tree = start_func()
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
     return listener
 
 
+def setup_file_parse(file_path, start_rule):
+    input_stream = FileStream(file_path)
+    return setup_listener(input_stream, start_rule)
+
+
+def setup_string_parse(input_string, start_rule):
+    input_stream = InputStream(input_string)
+    return setup_listener(input_stream, start_rule)
+
+
 def test_empty():
-    parse_file_setup('./assets/empty.vhd')
+    setup_file_parse('./assets/empty.vhd', 'design_file')
     nose.tools.ok_(True)
+
+
+def test_entity_name():
+    entity = """entity Adder is
+             end entity Adder;"""
+    listener = setup_string_parse(entity, 'entity_declaration')
+    nose.tools.eq_(listener.entity.name, 'Adder')

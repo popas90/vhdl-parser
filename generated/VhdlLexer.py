@@ -1,4 +1,4 @@
-# Generated from vhdl.g4 by ANTLR 4.5.3
+# Generated from Vhdl.g4 by ANTLR 4.5.3
 from antlr4 import *
 from io import StringIO
 
@@ -698,7 +698,7 @@ def serializedATN():
         return buf.getvalue()
 
 
-class vhdlLexer(Lexer):
+class VhdlLexer(Lexer):
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
@@ -936,7 +936,7 @@ class vhdlLexer(Lexer):
                   "HEXDIGIT", "INTEGER", "DIGIT", "BASED_INTEGER", "EXTENDED_DIGIT", 
                   "APOSTROPHE" ]
 
-    grammarFileName = "vhdl.g4"
+    grammarFileName = "Vhdl.g4"
 
     def __init__(self, input=None):
         super().__init__(input)

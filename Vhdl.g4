@@ -15,7 +15,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-grammar vhdl;
+grammar Vhdl;
 
 ABS: A B S;
 ACCESS : A C C E S S;
@@ -351,7 +351,7 @@ block_statement
   : label_colon BLOCK ( LPAREN expression RPAREN )? ( IS )?
     block_header
     block_declarative_part BEGIN
-    block_statement_part 
+    block_statement_part
     END BLOCK ( identifier )? SEMI
   ;
 
@@ -725,7 +725,7 @@ formal_parameter_list
 
 formal_part
   : identifier
-   | identifier LPAREN explicit_range  RPAREN 
+   | identifier LPAREN explicit_range  RPAREN
   ;
 
 free_quantity_declaration
@@ -792,7 +792,7 @@ identifier_list
 if_statement
   : ( label_colon )? IF condition THEN
     sequence_of_statements
-    ( ELSIF condition THEN sequence_of_statements )* 
+    ( ELSIF condition THEN sequence_of_statements )*
     ( ELSE sequence_of_statements )?
     END IF ( identifier )? SEMI
   ;
@@ -844,11 +844,11 @@ interface_file_declaration
   : FILE identifier_list COLON subtype_indication
   ;
 
-interface_signal_list 
+interface_signal_list
   : interface_signal_declaration ( SEMI interface_signal_declaration )*
   ;
 
-interface_port_list 
+interface_port_list
   : interface_port_declaration ( SEMI interface_port_declaration )*
   ;
 
@@ -925,7 +925,7 @@ logical_operator
 loop_statement
   : ( label_colon )? ( iteration_scheme )?
     LOOP
-    sequence_of_statements 
+    sequence_of_statements
     END LOOP ( identifier )? SEMI
   ;
 
@@ -958,14 +958,14 @@ multiplying_operator
 // slice_name, and attribute_name, respectively)
 // (2.2.2004, e.f.)
 name
-  : selected_name  
+  : selected_name
   | name_part ( DOT name_part)*
   ;
 
 name_part
    : selected_name (name_attribute_part | name_function_call_or_indexed_part | name_slice_part)?
    ;
-   
+
 name_attribute_part
    : APOSTROPHE attribute_designator ( expression ( COMMA expression )* )?
    ;
@@ -1083,7 +1083,7 @@ physical_literal
 
 physical_type_definition
   : range_constraint UNITS base_unit_declaration
-    ( secondary_unit_declaration )* 
+    ( secondary_unit_declaration )*
     END UNITS ( identifier )?
   ;
 
@@ -1170,7 +1170,7 @@ process_statement
     ( LPAREN sensitivity_list RPAREN )? ( IS )?
     process_declarative_part
     BEGIN
-    process_statement_part 
+    process_statement_part
     END ( POSTPONED )? PROCESS ( identifier )? SEMI
   ;
 
@@ -1356,7 +1356,7 @@ simultaneous_alternative
 
 simultaneous_case_statement
   : ( label_colon )? CASE expression USE
-    ( simultaneous_alternative )+ 
+    ( simultaneous_alternative )+
     END CASE ( identifier )? SEMI
   ;
 
@@ -1371,7 +1371,7 @@ simultaneous_if_statement
 simultaneous_procedural_statement
   : ( label_colon )? PROCEDURAL ( IS )?
     procedural_declarative_part BEGIN
-    procedural_statement_part 
+    procedural_statement_part
     END PROCEDURAL ( identifier )? SEMI
   ;
 
@@ -1405,7 +1405,7 @@ subnature_declaration
   ;
 
 subnature_indication
-  : name ( index_constraint )? 
+  : name ( index_constraint )?
     ( TOLERANCE expression ACROSS expression THROUGH )?
   ;
 
@@ -1546,14 +1546,14 @@ variable_declaration
   ;
 
 wait_statement
-  : ( label_colon )? WAIT ( sensitivity_clause )? 
+  : ( label_colon )? WAIT ( sensitivity_clause )?
     ( condition_clause )? ( timeout_clause )? SEMI
   ;
 
 waveform
   : waveform_element ( COMMA waveform_element )*
   | UNAFFECTED
-  ;   
+  ;
 
 waveform_element
   : expression ( AFTER expression )?
@@ -1594,7 +1594,7 @@ REAL_LITERAL
 BASIC_IDENTIFIER
    :   LETTER ( '_' ( LETTER | DIGIT ) | LETTER | DIGIT )*
    ;
-   
+
 EXTENDED_IDENTIFIER
   : '\\' ( 'a'..'z' | '0'..'9' | '&' | '\'' | '(' | ')'
     | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '|'
@@ -1602,31 +1602,31 @@ EXTENDED_IDENTIFIER
     | '#' | '[' | ']' | '_' )+ '\\'
   ;
 
-LETTER	
+LETTER
   :  'a'..'z' | 'A'..'Z'
   ;
 
 COMMENT
-  : '--' ( ~'\n' )* 
+  : '--' ( ~'\n' )*
   -> skip
   ;
 
 TAB
-  : ( '\t' )+ -> skip 
+  : ( '\t' )+ -> skip
   ;
 
 SPACE
-  : ( ' ' )+ -> skip 
+  : ( ' ' )+ -> skip
   ;
 
 NEWLINE
-  : '\n' -> skip 
+  : '\n' -> skip
   ;
 
 CR
-  : '\r' -> skip 
+  : '\r' -> skip
   ;
-  
+
 CHARACTER_LITERAL
    : APOSTROPHE . APOSTROPHE
    ;
@@ -1679,7 +1679,7 @@ EQ            : '='   ;
 BAR           : '|'   ;
 DOT           : '.'   ;
 BACKSLASH     : '\\'  ;
-  
+
 
 EXPONENT
   :  ('E'|'e') ( '+' | '-' )? INTEGER
