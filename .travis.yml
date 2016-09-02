@@ -6,7 +6,7 @@ python:
 install:
   - pip install -r requirements.txt
 ##Run tests
-script: nosetests
+script: nosetests -v
 notifications:
   email:
     on_success: never
