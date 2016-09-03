@@ -1,7 +1,7 @@
 from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker, InputStream
 from generated.VhdlLexer import VhdlLexer
 from generated.VhdlParser import VhdlParser
-from generated.VhdlListener import VhdlListener
+from src.ConcreteVhdlListener import ConcreteVhdlListener
 import nose
 
 
@@ -9,7 +9,7 @@ def setup_listener(input_stream, start_rule):
     lexer = VhdlLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = VhdlParser(stream)
-    listener = VhdlListener()
+    listener = ConcreteVhdlListener()
     start_func = getattr(parser, start_rule)
     tree = start_func()
     walker = ParseTreeWalker()
@@ -32,8 +32,7 @@ def test_empty():
     nose.tools.ok_(True)
 
 
-def test_entity_name():
-    entity = """entity Adder is
-             end entity Adder;"""
-    listener = setup_string_parse(entity, 'entity_declaration')
-    nose.tools.eq_(listener.entity.name, 'Adder')
+def test_name1():
+    name = 'Adder'
+    listener = setup_string_parse(name, 'name')
+    nose.tools.eq_(listener.name, 'Adder')
