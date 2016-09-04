@@ -894,7 +894,8 @@ library_clause
   ;
 
 library_unit
-  : secondary_unit  | primary_unit
+  : secondary_unit  
+  | primary_unit
   ;
 
 literal
@@ -958,8 +959,8 @@ multiplying_operator
 // slice_name, and attribute_name, respectively)
 // (2.2.2004, e.f.)
 name
-  : selected_name
-  | name_part ( DOT name_part)*
+  : selected_name                   # name_selected_name
+  | name_part ( DOT name_part)*     # name_name_part
   ;
 
 name_part

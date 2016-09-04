@@ -36,3 +36,9 @@ def test_name1():
     name = 'Adder'
     listener = setup_string_parse(name, 'name')
     nose.tools.eq_(listener.name, 'Adder')
+
+
+def test_name2():
+    name = 'Adder.adder'
+    listener = setup_string_parse(name, 'name')
+    nose.tools.eq_(listener.name, 'Adder.adder')

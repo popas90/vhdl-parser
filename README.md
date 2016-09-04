@@ -11,8 +11,9 @@ ANTLR-based VHDL parser.
     `$ pip install -r requirements.txt`
   - run `setup.sh` - it will download and set up ANTLR
   - edit .bashrc to add aliases for ANTLR and TestRig - add the following lines:
+    `export CLASSPATH=".:/usr/local/lib/antlr-4.5.3-complete.jar:$CLASSPATH"`
     `alias antlr4='java -jar /usr/local/lib/antlr-4.5.3-complete.jar'`
-    `alias grun='java org.antlr.v4.runtime.misc.TestRig'`
+    `alias grun='java org.antlr.v4.gui.TestRig'`
   - then, source bash:
     `$ . ~/.bashrc`
   - new commands `antlr4` and `grun` are now available
