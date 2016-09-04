@@ -32,26 +32,30 @@ def test_sanity():
     nose.tools.ok_(True)
 
 
-def testName_1():
+def test_name_1():
     name = 'Adder'
     visitor = parse_string(name, 'name')
     nose.tools.eq_(visitor.name, 'Adder')
 
 
-def testName_2():
+def test_name_2():
     name = 'Adder.adder.add'
     visitor = parse_string(name, 'name')
     nose.tools.eq_(visitor.name, 'Adder.adder.add')
 
 
-def testEntity_declaration_empty():
+def test_entity_declaration_empty():
     entity = """entity Adder is
              end entity Adder;"""
     visitor = parse_string(entity)
     nose.tools.eq_(visitor.entities[0].name, 'Adder')
 
 
-def testInterface_port_declaration():
-    port = 'rst : in std_logic;'
-    visitor = parse_string(port, 'interface_port_declaration')
-    nose.tools.eq_(visitor.entities[0].name, 'Adder')
+def test_port_declaration():
+    entity = """entity Adder is
+             port(rst : in std_logic)
+             end entity Adder;"""
+    visitor = parse_string(entity)
+    nose.tools.eq_(visitor.entities[0].ports[0].name, 'rst')
+    nose.tools.eq_(visitor.entities[0].ports[0].direction, 'in')
+    nose.tools.eq_(visitor.entities[0].ports[0].type, 'std_logic')

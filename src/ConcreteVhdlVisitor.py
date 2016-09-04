@@ -7,7 +7,6 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def __init__(self):
         self.name = ''
         self.entities = []
-        self.ports = []
 
     def visitInterface_port_declaration(self, ctx):
         pass
