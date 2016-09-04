@@ -1322,12 +1322,21 @@ class VhdlListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by VhdlParser#name.
-    def enterName(self, ctx:VhdlParser.NameContext):
+    # Enter a parse tree produced by VhdlParser#name__selected_name.
+    def enterName__selected_name(self, ctx:VhdlParser.Name__selected_nameContext):
         pass
 
-    # Exit a parse tree produced by VhdlParser#name.
-    def exitName(self, ctx:VhdlParser.NameContext):
+    # Exit a parse tree produced by VhdlParser#name__selected_name.
+    def exitName__selected_name(self, ctx:VhdlParser.Name__selected_nameContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#name__name_part.
+    def enterName__name_part(self, ctx:VhdlParser.Name__name_partContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#name__name_part.
+    def exitName__name_part(self, ctx:VhdlParser.Name__name_partContext):
         pass
 
 
@@ -2132,12 +2141,39 @@ class VhdlListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by VhdlParser#suffix.
-    def enterSuffix(self, ctx:VhdlParser.SuffixContext):
+    # Enter a parse tree produced by VhdlParser#suffix__identifier.
+    def enterSuffix__identifier(self, ctx:VhdlParser.Suffix__identifierContext):
         pass
 
-    # Exit a parse tree produced by VhdlParser#suffix.
-    def exitSuffix(self, ctx:VhdlParser.SuffixContext):
+    # Exit a parse tree produced by VhdlParser#suffix__identifier.
+    def exitSuffix__identifier(self, ctx:VhdlParser.Suffix__identifierContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#suffix__Character_Literal.
+    def enterSuffix__Character_Literal(self, ctx:VhdlParser.Suffix__Character_LiteralContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#suffix__Character_Literal.
+    def exitSuffix__Character_Literal(self, ctx:VhdlParser.Suffix__Character_LiteralContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#suffix__String_Literal.
+    def enterSuffix__String_Literal(self, ctx:VhdlParser.Suffix__String_LiteralContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#suffix__String_Literal.
+    def exitSuffix__String_Literal(self, ctx:VhdlParser.Suffix__String_LiteralContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#suffix__All.
+    def enterSuffix__All(self, ctx:VhdlParser.Suffix__AllContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#suffix__All.
+    def exitSuffix__All(self, ctx:VhdlParser.Suffix__AllContext):
         pass
 
 

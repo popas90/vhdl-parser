@@ -959,8 +959,8 @@ multiplying_operator
 // slice_name, and attribute_name, respectively)
 // (2.2.2004, e.f.)
 name
-  : selected_name                   # name_selected_name
-  | name_part ( DOT name_part)*     # name_name_part
+  : selected_name                   # name__selected_name
+  | name_part ( DOT name_part)*     # name__name_part
   ;
 
 name_part
@@ -1477,10 +1477,10 @@ subtype_indication
   ;
 
 suffix
-  : identifier
-  | CHARACTER_LITERAL
-  | STRING_LITERAL
-  | ALL
+  : identifier          # suffix__identifier
+  | CHARACTER_LITERAL   # suffix__Character_Literal
+  | STRING_LITERAL      # suffix__String_Literal
+  | ALL                 # suffix__All
   ;
 
 target

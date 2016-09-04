@@ -1,44 +1,44 @@
-from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker, InputStream
+from antlr4 import FileStream, CommonTokenStream, InputStream
 from generated.VhdlLexer import VhdlLexer
 from generated.VhdlParser import VhdlParser
-from src.ConcreteVhdlListener import ConcreteVhdlListener
+from src.ConcreteVhdlVisitor import ConcreteVhdlVisitor
 import nose
 
 
-def setup_listener(input_stream, start_rule):
+def setup_visitor(input_stream, start_rule):
     lexer = VhdlLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = VhdlParser(stream)
-    listener = ConcreteVhdlListener()
+    visitor = ConcreteVhdlVisitor()
     start_func = getattr(parser, start_rule)
     tree = start_func()
-    walker = ParseTreeWalker()
-    walker.walk(listener, tree)
-    return listener
+    visitor.visit(tree)
+    return visitor
 
 
-def setup_file_parse(file_path, start_rule):
+def parse_file(file_path, start_rule):
     input_stream = FileStream(file_path)
-    return setup_listener(input_stream, start_rule)
+    return setup_visitor(input_stream, start_rule)
 
 
-def setup_string_parse(input_string, start_rule):
+def parse_string(input_string, start_rule):
     input_stream = InputStream(input_string)
-    return setup_listener(input_stream, start_rule)
+    return setup_visitor(input_stream, start_rule)
 
 
-def test_empty():
-    setup_file_parse('./assets/empty.vhd', 'design_file')
+def test_sanity():
+    parse_file('./assets/empty.vhd', 'design_file')
+    parse_string('', 'design_file')
     nose.tools.ok_(True)
 
 
 def test_name1():
     name = 'Adder'
-    listener = setup_string_parse(name, 'name')
-    nose.tools.eq_(listener.name, 'Adder')
+    visitor = parse_string(name, 'name')
+    nose.tools.eq_(visitor.name, 'Adder')
 
 
 def test_name2():
     name = 'Adder.adder'
-    listener = setup_string_parse(name, 'name')
-    nose.tools.eq_(listener.name, 'Adder.adder')
+    visitor = parse_string(name, 'name')
+    nose.tools.eq_(visitor.name, 'Adder.adder')

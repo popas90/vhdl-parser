@@ -13099,9 +13099,21 @@ class VhdlParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def selected_name(self):
-            return self.getTypedRuleContext(VhdlParser.Selected_nameContext,0)
 
+        def getRuleIndex(self):
+            return VhdlParser.RULE_name
+
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class Name__name_partContext(NameContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.NameContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def name_part(self, i:int=None):
             if i is None:
@@ -13109,30 +13121,50 @@ class VhdlParser ( Parser ):
             else:
                 return self.getTypedRuleContext(VhdlParser.Name_partContext,i)
 
-
         def DOT(self, i:int=None):
             if i is None:
                 return self.getTokens(VhdlParser.DOT)
             else:
                 return self.getToken(VhdlParser.DOT, i)
 
-        def getRuleIndex(self):
-            return VhdlParser.RULE_name
-
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterName" ):
-                listener.enterName(self)
+            if hasattr( listener, "enterName__name_part" ):
+                listener.enterName__name_part(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitName" ):
-                listener.exitName(self)
+            if hasattr( listener, "exitName__name_part" ):
+                listener.exitName__name_part(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitName" ):
-                return visitor.visitName(self)
+            if hasattr( visitor, "visitName__name_part" ):
+                return visitor.visitName__name_part(self)
             else:
                 return visitor.visitChildren(self)
 
+
+    class Name__selected_nameContext(NameContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.NameContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def selected_name(self):
+            return self.getTypedRuleContext(VhdlParser.Selected_nameContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterName__selected_name" ):
+                listener.enterName__selected_name(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitName__selected_name" ):
+                listener.exitName__selected_name(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitName__selected_name" ):
+                return visitor.visitName__selected_name(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -13145,12 +13177,14 @@ class VhdlParser ( Parser ):
             self._errHandler.sync(self);
             la_ = self._interp.adaptivePredict(self._input,167,self._ctx)
             if la_ == 1:
+                localctx = VhdlParser.Name__selected_nameContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 1654
                 self.selected_name()
                 pass
 
             elif la_ == 2:
+                localctx = VhdlParser.Name__name_partContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1655
                 self.name_part()
@@ -20468,36 +20502,111 @@ class VhdlParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def identifier(self):
-            return self.getTypedRuleContext(VhdlParser.IdentifierContext,0)
-
-
-        def CHARACTER_LITERAL(self):
-            return self.getToken(VhdlParser.CHARACTER_LITERAL, 0)
-
-        def STRING_LITERAL(self):
-            return self.getToken(VhdlParser.STRING_LITERAL, 0)
-
-        def ALL(self):
-            return self.getToken(VhdlParser.ALL, 0)
 
         def getRuleIndex(self):
             return VhdlParser.RULE_suffix
 
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class Suffix__identifierContext(SuffixContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.SuffixContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def identifier(self):
+            return self.getTypedRuleContext(VhdlParser.IdentifierContext,0)
+
+
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSuffix" ):
-                listener.enterSuffix(self)
+            if hasattr( listener, "enterSuffix__identifier" ):
+                listener.enterSuffix__identifier(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSuffix" ):
-                listener.exitSuffix(self)
+            if hasattr( listener, "exitSuffix__identifier" ):
+                listener.exitSuffix__identifier(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitSuffix" ):
-                return visitor.visitSuffix(self)
+            if hasattr( visitor, "visitSuffix__identifier" ):
+                return visitor.visitSuffix__identifier(self)
             else:
                 return visitor.visitChildren(self)
 
+
+    class Suffix__AllContext(SuffixContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.SuffixContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ALL(self):
+            return self.getToken(VhdlParser.ALL, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterSuffix__All" ):
+                listener.enterSuffix__All(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitSuffix__All" ):
+                listener.exitSuffix__All(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSuffix__All" ):
+                return visitor.visitSuffix__All(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class Suffix__Character_LiteralContext(SuffixContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.SuffixContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def CHARACTER_LITERAL(self):
+            return self.getToken(VhdlParser.CHARACTER_LITERAL, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterSuffix__Character_Literal" ):
+                listener.enterSuffix__Character_Literal(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitSuffix__Character_Literal" ):
+                listener.exitSuffix__Character_Literal(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSuffix__Character_Literal" ):
+                return visitor.visitSuffix__Character_Literal(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class Suffix__String_LiteralContext(SuffixContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.SuffixContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def STRING_LITERAL(self):
+            return self.getToken(VhdlParser.STRING_LITERAL, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterSuffix__String_Literal" ):
+                listener.enterSuffix__String_Literal(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitSuffix__String_Literal" ):
+                listener.exitSuffix__String_Literal(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSuffix__String_Literal" ):
+                return visitor.visitSuffix__String_Literal(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -20509,21 +20618,25 @@ class VhdlParser ( Parser ):
             self.state = 2446
             token = self._input.LA(1)
             if token in [VhdlParser.BASIC_IDENTIFIER, VhdlParser.EXTENDED_IDENTIFIER]:
+                localctx = VhdlParser.Suffix__identifierContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 2442
                 self.identifier()
 
             elif token in [VhdlParser.CHARACTER_LITERAL]:
+                localctx = VhdlParser.Suffix__Character_LiteralContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 2443
                 self.match(VhdlParser.CHARACTER_LITERAL)
 
             elif token in [VhdlParser.STRING_LITERAL]:
+                localctx = VhdlParser.Suffix__String_LiteralContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
                 self.state = 2444
                 self.match(VhdlParser.STRING_LITERAL)
 
             elif token in [VhdlParser.ALL]:
+                localctx = VhdlParser.Suffix__AllContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
                 self.state = 2445
                 self.match(VhdlParser.ALL)

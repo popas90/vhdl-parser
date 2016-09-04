@@ -739,8 +739,13 @@ class VhdlVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by VhdlParser#name.
-    def visitName(self, ctx:VhdlParser.NameContext):
+    # Visit a parse tree produced by VhdlParser#name__selected_name.
+    def visitName__selected_name(self, ctx:VhdlParser.Name__selected_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#name__name_part.
+    def visitName__name_part(self, ctx:VhdlParser.Name__name_partContext):
         return self.visitChildren(ctx)
 
 
@@ -1189,8 +1194,23 @@ class VhdlVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by VhdlParser#suffix.
-    def visitSuffix(self, ctx:VhdlParser.SuffixContext):
+    # Visit a parse tree produced by VhdlParser#suffix__identifier.
+    def visitSuffix__identifier(self, ctx:VhdlParser.Suffix__identifierContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#suffix__Character_Literal.
+    def visitSuffix__Character_Literal(self, ctx:VhdlParser.Suffix__Character_LiteralContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#suffix__String_Literal.
+    def visitSuffix__String_Literal(self, ctx:VhdlParser.Suffix__String_LiteralContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#suffix__All.
+    def visitSuffix__All(self, ctx:VhdlParser.Suffix__AllContext):
         return self.visitChildren(ctx)
 
 
