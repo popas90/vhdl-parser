@@ -16,12 +16,12 @@ def setup_visitor(input_stream, start_rule):
     return visitor
 
 
-def parse_file(file_path, start_rule):
+def parse_file(file_path, start_rule='design_file'):
     input_stream = FileStream(file_path)
     return setup_visitor(input_stream, start_rule)
 
 
-def parse_string(input_string, start_rule):
+def parse_string(input_string, start_rule='design_file'):
     input_stream = InputStream(input_string)
     return setup_visitor(input_stream, start_rule)
 
@@ -32,13 +32,26 @@ def test_sanity():
     nose.tools.ok_(True)
 
 
-def test_name1():
+def testName_1():
     name = 'Adder'
     visitor = parse_string(name, 'name')
     nose.tools.eq_(visitor.name, 'Adder')
 
 
-def test_name2():
-    name = 'Adder.adder'
+def testName_2():
+    name = 'Adder.adder.add'
     visitor = parse_string(name, 'name')
-    nose.tools.eq_(visitor.name, 'Adder.adder')
+    nose.tools.eq_(visitor.name, 'Adder.adder.add')
+
+
+def testEntity_declaration_empty():
+    entity = """entity Adder is
+             end entity Adder;"""
+    visitor = parse_string(entity)
+    nose.tools.eq_(visitor.entities[0].name, 'Adder')
+
+
+def testInterface_port_declaration():
+    port = 'rst : in std_logic;'
+    visitor = parse_string(port, 'interface_port_declaration')
+    nose.tools.eq_(visitor.entities[0].name, 'Adder')

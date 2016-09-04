@@ -1,10 +1,19 @@
 from generated.VhdlVisitor import VhdlVisitor
+from .Entity import Entity
 
 
 class ConcreteVhdlVisitor(VhdlVisitor):
 
     def __init__(self):
         self.name = ''
+        self.entities = []
+        self.ports = []
+
+    def visitInterface_port_declaration(self, ctx):
+        pass
+
+    def visitEntity_declaration(self, ctx):
+        self.entities.append(Entity(self.visit(ctx.identifier()[0])))
 
     def visitName__selected_name(self, ctx):
         self.name = self.visit(ctx.selected_name())
