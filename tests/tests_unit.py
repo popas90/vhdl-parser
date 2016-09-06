@@ -27,12 +27,6 @@ def parse_string(input_string, start_rule='design_file'):
     return setup_visitor(input_stream, start_rule)
 
 
-def mock_for_visit(visitor, visit_result):
-    mock_obj = mock()
-    when(mock_obj.accept(visitor)).thenReturn(visit_result)
-    return mock_obj
-
-
 def test_sanity():
     parse_file('./assets/empty.vhd', 'design_file')
     parse_string('', 'design_file')
