@@ -73,3 +73,6 @@ def test_identifier():
     when(extended_identifier).getText().thenReturn('extended')
     when(identifier_node).BASIC_IDENTIFIER().thenReturn(basic_identifier)
     nose.tools.eq_(visitor.visitIdentifier(identifier_node), 'basic')
+    when(identifier_node).BASIC_IDENTIFIER().thenReturn(False)
+    when(identifier_node).EXTENDED_IDENTIFIER().thenReturn(extended_identifier)
+    nose.tools.eq_(visitor.visitIdentifier(identifier_node), 'extended')
