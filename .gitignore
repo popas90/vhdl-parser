@@ -1,6 +1,7 @@
 *.class
 generated/java/
 nosetests.json
+cover/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

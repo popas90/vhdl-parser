@@ -17,8 +17,16 @@ class ConcreteVhdlVisitor(VhdlVisitor):
         else:
             return ctx.EXTENDED_IDENTIFIER().getText()
 
+    def visitName__name_part(self, ctx):
+        parts = ''
+        for part in ctx.name_part():
+            parts += self.visit(part) + '.'
+        # remove trailing '.'
+        return parts[:-1]
+
     def visitName__selected_name(self, ctx):
         self.name = self.visit(ctx.selected_name())
+        return self.name
 
     def visitSelected_name(self, ctx):
         string = self.visit(ctx.identifier())

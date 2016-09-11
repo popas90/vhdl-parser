@@ -3,7 +3,6 @@ from generated.VhdlLexer import VhdlLexer
 from generated.VhdlParser import VhdlParser
 from src.ConcreteVhdlVisitor import ConcreteVhdlVisitor
 import nose
-from mockito import mock, when
 
 
 def setup_visitor(input_stream, start_rule):
