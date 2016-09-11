@@ -5,6 +5,7 @@ from mockito import mock, when
 
 class TestVisitor:
 
+    # Helpers
     def setUp(self):
         self._visitor = ConcreteVhdlVisitor()
         self._ctx = mock()
@@ -20,6 +21,7 @@ class TestVisitor:
             mock_list.append(self._mock_for_visit(result))
         return mock_list
 
+    # Tests
     def test_identifier(self):
         basic_identifier = mock()
         extended_identifier = mock()

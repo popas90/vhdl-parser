@@ -1,6 +1,6 @@
 #!/bin/bash
 set -o errexit
-printf "Running code analysis...\n"
+printf "\nRunning code analysis...\n"
 flake8 --show-source --exclude=generated/,.git/,__pycache__ .
 printf "Code analysis passed.\n"
 printf "\nRunning tests...\n"
