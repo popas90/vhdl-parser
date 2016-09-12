@@ -1,5 +1,5 @@
 from src.ConcreteVhdlVisitor import ConcreteVhdlVisitor
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from mockito import mock, when
 
 
@@ -22,6 +22,9 @@ class TestVisitor:
         return mock_list
 
     # Tests
+    def test_entity_declaration(self):
+        ok_(False)
+
     def test_identifier(self):
         basic_identifier = mock()
         extended_identifier = mock()

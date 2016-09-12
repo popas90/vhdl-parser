@@ -32,18 +32,6 @@ def test_sanity():
     nose.tools.ok_(True)
 
 
-def test_name_1():
-    name = 'Adder'
-    visitor = parse_string(name, 'name')
-    nose.tools.eq_(visitor.name, 'Adder')
-
-
-def test_name_2():
-    name = 'Adder.adder.add'
-    visitor = parse_string(name, 'name')
-    nose.tools.eq_(visitor.name, 'Adder.adder.add')
-
-
 def test_entity_declaration_empty():
     entity = """entity Adder is
              end entity Adder;"""

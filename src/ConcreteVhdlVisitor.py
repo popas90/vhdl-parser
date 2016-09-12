@@ -5,7 +5,6 @@ from .Entity import Entity
 class ConcreteVhdlVisitor(VhdlVisitor):
 
     def __init__(self):
-        self.name = ''
         self.entities = []
 
     def visitEntity_declaration(self, ctx):
