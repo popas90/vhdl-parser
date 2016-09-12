@@ -25,3 +25,12 @@ class TestEntity:
         entity.add_port(clk_port)
         list_of_ports = [port for port in entity.get_ports()]
         eq_(list_of_ports, entity._ports)
+
+
+class TestPort:
+
+    def test_create(self):
+        port = Port('rst', 'in', 'std_logic')
+        eq_('rst', port.name)
+        eq_('in', port.dir)
+        eq_('std_logic', port.type)
