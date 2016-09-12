@@ -16,3 +16,12 @@ class TestEntity:
         rst_port = Port('rst', 'in', 'std_logic')
         entity.add_port(rst_port)
         eq_([rst_port], entity._ports)
+
+    def test_get_ports(self):
+        entity = Entity('adder')
+        rst_port = Port('rst', 'in', 'std_logic')
+        entity.add_port(rst_port)
+        clk_port = Port('clk', 'in', 'std_logic')
+        entity.add_port(clk_port)
+        list_of_ports = [port for port in entity.get_ports()]
+        eq_(list_of_ports, entity._ports)

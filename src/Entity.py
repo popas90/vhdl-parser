@@ -7,3 +7,7 @@ class Entity:
 
     def add_port(self, port):
         self._ports.append(port)
+
+    def get_ports(self):
+        for port in self._ports:
+            yield port
