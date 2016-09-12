@@ -25,8 +25,7 @@ class ConcreteVhdlVisitor(VhdlVisitor):
         return parts[:-1]
 
     def visitName__selected_name(self, ctx):
-        self.name = self.visit(ctx.selected_name())
-        return self.name
+        return self.visit(ctx.selected_name())
 
     def visitSelected_name(self, ctx):
         string = self.visit(ctx.identifier())
