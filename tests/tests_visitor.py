@@ -22,9 +22,6 @@ class TestVisitor:
         return mock_list
 
     # Tests
-    def test_entity_declaration(self):
-        ok_(False)
-
     def test_identifier(self):
         basic_identifier = mock()
         extended_identifier = mock()
