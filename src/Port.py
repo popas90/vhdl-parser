@@ -1,6 +1,6 @@
 class Port:
 
-    def __init__(self, name, dir, type):
+    def __init__(self, name, direction, type):
         self.name = name
-        self.dir = dir
+        self.dir = direction
         self.type = type

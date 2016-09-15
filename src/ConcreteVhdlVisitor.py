@@ -16,6 +16,9 @@ class ConcreteVhdlVisitor(VhdlVisitor):
         else:
             return ctx.EXTENDED_IDENTIFIER().getText()
 
+    def visitIdentifier_list(self, ctx):
+        return [self.visit(ident) for ident in ctx.identifier()]
+
     def visitName__name_part(self, ctx):
         parts = ''
         for part in ctx.name_part():

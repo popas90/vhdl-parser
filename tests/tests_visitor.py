@@ -40,6 +40,15 @@ class TestVisitor:
         when(self._ctx).BASIC_IDENTIFIER().thenReturn(False)
         eq_('extended', self._visitor.visitIdentifier(self._ctx))
 
+    def test_identifier_list(self):
+        when(self._ctx).identifier() \
+            .thenReturn(self._mock_list_for_visit('id1', 'id2'))
+        eq_(['id1', 'id2'], self._visitor.visitIdentifier_list(self._ctx))
+        when(self._ctx).identifier() \
+            .thenReturn(self._mock_list_for_visit('id1', 'id2', 'id3'))
+        eq_(['id1', 'id2', 'id3'],
+            self._visitor.visitIdentifier_list(self._ctx))
+
     def test_name__name_part(self):
         when(self._ctx).name_part() \
             .thenReturn(self._mock_list_for_visit('part1'))
