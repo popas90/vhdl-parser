@@ -2,6 +2,7 @@
 generated/java/
 nosetests.json
 cover/
+.flake8rc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

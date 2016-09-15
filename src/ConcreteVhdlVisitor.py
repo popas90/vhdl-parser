@@ -33,6 +33,12 @@ class ConcreteVhdlVisitor(VhdlVisitor):
                 string += '.' + self.visit(suf)
         return string
 
+    def visitSubtype_indication(self, ctx):
+        subtype = [self.visit(sel_name) for sel_name in ctx.selected_name()]
+        if (ctx.constraint()):
+            subtype.append(self.visit(ctx.constraint()))
+        return subtype
+
     def visitSuffix__All(self, ctx):
         return ctx.ALL().getText()
 

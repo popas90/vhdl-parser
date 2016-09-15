@@ -1,5 +1,5 @@
 from src.ConcreteVhdlVisitor import ConcreteVhdlVisitor
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 from mockito import mock, when
 
 
@@ -20,6 +20,13 @@ class TestVisitor:
         for result in visit_result:
             mock_list.append(self._mock_for_visit(result))
         return mock_list
+
+    # This is unused, I was getting ready to refactor into it,
+    # but couldn't find a good solution for calling methods
+    # by name when mocking
+    def set_mock_list(self, method, *visit_result):
+        when(self._ctx).method() \
+            .thenReturn(self._mock_list_for_visit(visit_result))
 
     # Tests
     def test_identifier(self):
@@ -55,6 +62,16 @@ class TestVisitor:
         when(self._ctx).suffix() \
             .thenReturn(self._mock_list_for_visit('suf', 'suf2'))
         eq_('ident.suf.suf2', self._visitor.visitSelected_name(self._ctx))
+
+    def test_subtype_indication(self):
+        when(self._ctx).selected_name() \
+            .thenReturn(self._mock_list_for_visit('na', 'la', 'sa'))
+        eq_(['na', 'la', 'sa'],
+            self._visitor.visitSubtype_indication(self._ctx))
+        when(self._ctx).constraint() \
+            .thenReturn(self._mock_for_visit('constr'))
+        eq_(['na', 'la', 'sa', 'constr'],
+            self._visitor.visitSubtype_indication(self._ctx))
 
     def test_suffix__All(self):
         all_lit = mock()
