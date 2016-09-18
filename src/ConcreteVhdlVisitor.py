@@ -1,5 +1,6 @@
 from generated.VhdlVisitor import VhdlVisitor
 from .Entity import Entity
+from .Generic import Generic
 
 
 class ConcreteVhdlVisitor(VhdlVisitor):
@@ -18,6 +19,12 @@ class ConcreteVhdlVisitor(VhdlVisitor):
 
     def visitIdentifier_list(self, ctx):
         return [self.visit(ident) for ident in ctx.identifier()]
+
+    def visitInterface_constant_declaration(self, ctx):
+        identifiers = self.visit(ctx.identifier_list())
+        type_ind = ''.join(self.visit(ctx.subtype_indication()))
+        generics = [Generic(ident, type_ind) for ident in identifiers]
+        return generics
 
     def visitName__name_part(self, ctx):
         parts = ''

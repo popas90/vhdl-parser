@@ -1,6 +1,7 @@
 from src.ConcreteVhdlVisitor import ConcreteVhdlVisitor
 from nose.tools import eq_
 from mockito import mock, when
+from src.Generic import Generic
 
 
 class TestVisitor:
@@ -48,6 +49,14 @@ class TestVisitor:
             .thenReturn(self._mock_list_for_visit('id1', 'id2', 'id3'))
         eq_(['id1', 'id2', 'id3'],
             self._visitor.visitIdentifier_list(self._ctx))
+
+    def test_interface_constant_declaration(self):
+        when(self._ctx).identifier_list() \
+            .thenReturn(self._mock_for_visit(['gen1', 'gen2']))
+        when(self._ctx).subtype_indication() \
+            .thenReturn(self._mock_for_visit('type1'))
+        eq_([Generic('gen1', 'type1'), Generic('gen2', 'type1')],
+            self._visitor.visitInterface_constant_declaration(self._ctx))
 
     def test_name__name_part(self):
         when(self._ctx).name_part() \

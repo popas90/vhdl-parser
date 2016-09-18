@@ -1,6 +1,7 @@
 from src.Entity import Entity
 from src.Port import Port
-from nose.tools import eq_
+from src.Generic import Generic
+from nose.tools import eq_, ok_
 
 
 class TestEntity:
@@ -34,3 +35,25 @@ class TestPort:
         eq_('rst', port.name)
         eq_('in', port.dir)
         eq_('std_logic', port.type)
+
+
+class TestGeneric:
+
+    def test_create(self):
+        generic = Generic('kDepth', 'integer', '4')
+        eq_('kDepth', generic.name)
+        eq_('integer', generic.type)
+        eq_('4', generic.init_value)
+
+    def test_create_init_default(self):
+        generic = Generic('kDepth', 'integer')
+        eq_('kDepth', generic.name)
+        eq_('integer', generic.type)
+        eq_('', generic.init_value)
+
+    def test_eq_ne(self):
+        generic1 = Generic('kDepth', 'integer')
+        generic2 = Generic('kDepth', 'integer', '')
+        generic3 = Generic('kDepth', 'integer', '3')
+        ok_(generic1 == generic2)
+        ok_(generic1 != generic3)
