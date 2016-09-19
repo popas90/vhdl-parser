@@ -161,9 +161,9 @@ fragment Z:('z'|'Z');
 //------------------------------------------Parser----------------------------------------
 
 abstract_literal
-   :  INTEGER
-   |  REAL_LITERAL
-   |  BASE_LITERAL
+   :  INTEGER       # abstract_literal__Integer
+   |  REAL_LITERAL  # abstract_literal__Real_Literal
+   |  BASE_LITERAL  # abstract_literal__Base_Literal
    ;
 
 access_type_definition

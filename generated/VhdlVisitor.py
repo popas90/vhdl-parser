@@ -9,8 +9,18 @@ else:
 
 class VhdlVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by VhdlParser#abstract_literal.
-    def visitAbstract_literal(self, ctx:VhdlParser.Abstract_literalContext):
+    # Visit a parse tree produced by VhdlParser#abstract_literal__Integer.
+    def visitAbstract_literal__Integer(self, ctx:VhdlParser.Abstract_literal__IntegerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#abstract_literal__Real_Literal.
+    def visitAbstract_literal__Real_Literal(self, ctx:VhdlParser.Abstract_literal__Real_LiteralContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#abstract_literal__Base_Literal.
+    def visitAbstract_literal__Base_Literal(self, ctx:VhdlParser.Abstract_literal__Base_LiteralContext):
         return self.visitChildren(ctx)
 
 

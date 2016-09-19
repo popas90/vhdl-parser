@@ -8,12 +8,30 @@ else:
 # This class defines a complete listener for a parse tree produced by VhdlParser.
 class VhdlListener(ParseTreeListener):
 
-    # Enter a parse tree produced by VhdlParser#abstract_literal.
-    def enterAbstract_literal(self, ctx:VhdlParser.Abstract_literalContext):
+    # Enter a parse tree produced by VhdlParser#abstract_literal__Integer.
+    def enterAbstract_literal__Integer(self, ctx:VhdlParser.Abstract_literal__IntegerContext):
         pass
 
-    # Exit a parse tree produced by VhdlParser#abstract_literal.
-    def exitAbstract_literal(self, ctx:VhdlParser.Abstract_literalContext):
+    # Exit a parse tree produced by VhdlParser#abstract_literal__Integer.
+    def exitAbstract_literal__Integer(self, ctx:VhdlParser.Abstract_literal__IntegerContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#abstract_literal__Real_Literal.
+    def enterAbstract_literal__Real_Literal(self, ctx:VhdlParser.Abstract_literal__Real_LiteralContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#abstract_literal__Real_Literal.
+    def exitAbstract_literal__Real_Literal(self, ctx:VhdlParser.Abstract_literal__Real_LiteralContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#abstract_literal__Base_Literal.
+    def enterAbstract_literal__Base_Literal(self, ctx:VhdlParser.Abstract_literal__Base_LiteralContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#abstract_literal__Base_Literal.
+    def exitAbstract_literal__Base_Literal(self, ctx:VhdlParser.Abstract_literal__Base_LiteralContext):
         pass
 
 

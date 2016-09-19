@@ -8,6 +8,12 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def __init__(self):
         self.entities = []
 
+    def visitAbstract_literal__Integer(self, ctx):
+        return ctx.INTEGER().getText()
+
+    def visitAbstract_literal__Real_Literal(self, ctx):
+        return ctx.REAL_LITERAL().getText()
+
     def visitEntity_declaration(self, ctx):
         self.entities.append(Entity(self.visit(ctx.identifier()[0])))
 

@@ -20,3 +20,14 @@ def test_generic_declaration():
     visit_result = helpers.parse_string(generic,
                                         'interface_constant_declaration')
     nose.tools.eq_([Generic('kDepth', 'natural')], visit_result)
+
+
+def test_abstract_literal():
+    literal = '22'
+    visit_result = helpers.parse_string(literal,
+                                        'abstract_literal')
+    nose.tools.eq_('22', visit_result)
+    literal = '22.33'
+    visit_result = helpers.parse_string(literal,
+                                        'abstract_literal')
+    nose.tools.eq_('22.33', visit_result)
