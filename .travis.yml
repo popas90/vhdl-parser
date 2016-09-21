@@ -8,7 +8,7 @@ install:
 ##Run tests
 script:
   - ./setup.sh --local
-  - ./build.sh
+  - ./build.sh --local
   - ./run_tests_full.sh
 notifications:
   email:
