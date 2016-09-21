@@ -484,8 +484,13 @@ class VhdlVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by VhdlParser#enumeration_literal.
-    def visitEnumeration_literal(self, ctx:VhdlParser.Enumeration_literalContext):
+    # Visit a parse tree produced by VhdlParser#enumeration_literal__identifier.
+    def visitEnumeration_literal__identifier(self, ctx:VhdlParser.Enumeration_literal__identifierContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#enumeration_literal__Character_Literal.
+    def visitEnumeration_literal__Character_Literal(self, ctx:VhdlParser.Enumeration_literal__Character_LiteralContext):
         return self.visitChildren(ctx)
 
 
@@ -714,8 +719,28 @@ class VhdlVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by VhdlParser#literal.
-    def visitLiteral(self, ctx:VhdlParser.LiteralContext):
+    # Visit a parse tree produced by VhdlParser#literal__Null.
+    def visitLiteral__Null(self, ctx:VhdlParser.Literal__NullContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#literal__Bit_String_Literal.
+    def visitLiteral__Bit_String_Literal(self, ctx:VhdlParser.Literal__Bit_String_LiteralContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#literal__String_Literal.
+    def visitLiteral__String_Literal(self, ctx:VhdlParser.Literal__String_LiteralContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#literal__enumeration_literal.
+    def visitLiteral__enumeration_literal(self, ctx:VhdlParser.Literal__enumeration_literalContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#literal__numeric_literal.
+    def visitLiteral__numeric_literal(self, ctx:VhdlParser.Literal__numeric_literalContext):
         return self.visitChildren(ctx)
 
 
@@ -804,8 +829,13 @@ class VhdlVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by VhdlParser#numeric_literal.
-    def visitNumeric_literal(self, ctx:VhdlParser.Numeric_literalContext):
+    # Visit a parse tree produced by VhdlParser#numeric_literal__abstract_literal.
+    def visitNumeric_literal__abstract_literal(self, ctx:VhdlParser.Numeric_literal__abstract_literalContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#numeric_literal__physical_literal.
+    def visitNumeric_literal__physical_literal(self, ctx:VhdlParser.Numeric_literal__physical_literalContext):
         return self.visitChildren(ctx)
 
 
@@ -879,8 +909,33 @@ class VhdlVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by VhdlParser#primary.
-    def visitPrimary(self, ctx:VhdlParser.PrimaryContext):
+    # Visit a parse tree produced by VhdlParser#primary__literal.
+    def visitPrimary__literal(self, ctx:VhdlParser.Primary__literalContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#primary__qualified_expression.
+    def visitPrimary__qualified_expression(self, ctx:VhdlParser.Primary__qualified_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#primary__expression.
+    def visitPrimary__expression(self, ctx:VhdlParser.Primary__expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#primary__allocator.
+    def visitPrimary__allocator(self, ctx:VhdlParser.Primary__allocatorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#primary__aggregate.
+    def visitPrimary__aggregate(self, ctx:VhdlParser.Primary__aggregateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by VhdlParser#primary__name.
+    def visitPrimary__name(self, ctx:VhdlParser.Primary__nameContext):
         return self.visitChildren(ctx)
 
 

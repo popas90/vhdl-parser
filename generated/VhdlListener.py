@@ -863,12 +863,21 @@ class VhdlListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by VhdlParser#enumeration_literal.
-    def enterEnumeration_literal(self, ctx:VhdlParser.Enumeration_literalContext):
+    # Enter a parse tree produced by VhdlParser#enumeration_literal__identifier.
+    def enterEnumeration_literal__identifier(self, ctx:VhdlParser.Enumeration_literal__identifierContext):
         pass
 
-    # Exit a parse tree produced by VhdlParser#enumeration_literal.
-    def exitEnumeration_literal(self, ctx:VhdlParser.Enumeration_literalContext):
+    # Exit a parse tree produced by VhdlParser#enumeration_literal__identifier.
+    def exitEnumeration_literal__identifier(self, ctx:VhdlParser.Enumeration_literal__identifierContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#enumeration_literal__Character_Literal.
+    def enterEnumeration_literal__Character_Literal(self, ctx:VhdlParser.Enumeration_literal__Character_LiteralContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#enumeration_literal__Character_Literal.
+    def exitEnumeration_literal__Character_Literal(self, ctx:VhdlParser.Enumeration_literal__Character_LiteralContext):
         pass
 
 
@@ -1277,12 +1286,48 @@ class VhdlListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by VhdlParser#literal.
-    def enterLiteral(self, ctx:VhdlParser.LiteralContext):
+    # Enter a parse tree produced by VhdlParser#literal__Null.
+    def enterLiteral__Null(self, ctx:VhdlParser.Literal__NullContext):
         pass
 
-    # Exit a parse tree produced by VhdlParser#literal.
-    def exitLiteral(self, ctx:VhdlParser.LiteralContext):
+    # Exit a parse tree produced by VhdlParser#literal__Null.
+    def exitLiteral__Null(self, ctx:VhdlParser.Literal__NullContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#literal__Bit_String_Literal.
+    def enterLiteral__Bit_String_Literal(self, ctx:VhdlParser.Literal__Bit_String_LiteralContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#literal__Bit_String_Literal.
+    def exitLiteral__Bit_String_Literal(self, ctx:VhdlParser.Literal__Bit_String_LiteralContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#literal__String_Literal.
+    def enterLiteral__String_Literal(self, ctx:VhdlParser.Literal__String_LiteralContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#literal__String_Literal.
+    def exitLiteral__String_Literal(self, ctx:VhdlParser.Literal__String_LiteralContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#literal__enumeration_literal.
+    def enterLiteral__enumeration_literal(self, ctx:VhdlParser.Literal__enumeration_literalContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#literal__enumeration_literal.
+    def exitLiteral__enumeration_literal(self, ctx:VhdlParser.Literal__enumeration_literalContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#literal__numeric_literal.
+    def enterLiteral__numeric_literal(self, ctx:VhdlParser.Literal__numeric_literalContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#literal__numeric_literal.
+    def exitLiteral__numeric_literal(self, ctx:VhdlParser.Literal__numeric_literalContext):
         pass
 
 
@@ -1439,12 +1484,21 @@ class VhdlListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by VhdlParser#numeric_literal.
-    def enterNumeric_literal(self, ctx:VhdlParser.Numeric_literalContext):
+    # Enter a parse tree produced by VhdlParser#numeric_literal__abstract_literal.
+    def enterNumeric_literal__abstract_literal(self, ctx:VhdlParser.Numeric_literal__abstract_literalContext):
         pass
 
-    # Exit a parse tree produced by VhdlParser#numeric_literal.
-    def exitNumeric_literal(self, ctx:VhdlParser.Numeric_literalContext):
+    # Exit a parse tree produced by VhdlParser#numeric_literal__abstract_literal.
+    def exitNumeric_literal__abstract_literal(self, ctx:VhdlParser.Numeric_literal__abstract_literalContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#numeric_literal__physical_literal.
+    def enterNumeric_literal__physical_literal(self, ctx:VhdlParser.Numeric_literal__physical_literalContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#numeric_literal__physical_literal.
+    def exitNumeric_literal__physical_literal(self, ctx:VhdlParser.Numeric_literal__physical_literalContext):
         pass
 
 
@@ -1574,12 +1628,57 @@ class VhdlListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by VhdlParser#primary.
-    def enterPrimary(self, ctx:VhdlParser.PrimaryContext):
+    # Enter a parse tree produced by VhdlParser#primary__literal.
+    def enterPrimary__literal(self, ctx:VhdlParser.Primary__literalContext):
         pass
 
-    # Exit a parse tree produced by VhdlParser#primary.
-    def exitPrimary(self, ctx:VhdlParser.PrimaryContext):
+    # Exit a parse tree produced by VhdlParser#primary__literal.
+    def exitPrimary__literal(self, ctx:VhdlParser.Primary__literalContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#primary__qualified_expression.
+    def enterPrimary__qualified_expression(self, ctx:VhdlParser.Primary__qualified_expressionContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#primary__qualified_expression.
+    def exitPrimary__qualified_expression(self, ctx:VhdlParser.Primary__qualified_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#primary__expression.
+    def enterPrimary__expression(self, ctx:VhdlParser.Primary__expressionContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#primary__expression.
+    def exitPrimary__expression(self, ctx:VhdlParser.Primary__expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#primary__allocator.
+    def enterPrimary__allocator(self, ctx:VhdlParser.Primary__allocatorContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#primary__allocator.
+    def exitPrimary__allocator(self, ctx:VhdlParser.Primary__allocatorContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#primary__aggregate.
+    def enterPrimary__aggregate(self, ctx:VhdlParser.Primary__aggregateContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#primary__aggregate.
+    def exitPrimary__aggregate(self, ctx:VhdlParser.Primary__aggregateContext):
+        pass
+
+
+    # Enter a parse tree produced by VhdlParser#primary__name.
+    def enterPrimary__name(self, ctx:VhdlParser.Primary__nameContext):
+        pass
+
+    # Exit a parse tree produced by VhdlParser#primary__name.
+    def exitPrimary__name(self, ctx:VhdlParser.Primary__nameContext):
         pass
 
 

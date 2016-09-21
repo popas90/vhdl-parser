@@ -678,8 +678,8 @@ entity_tag
   ;
 
 enumeration_literal
-  : identifier
-  | CHARACTER_LITERAL
+  : identifier          # enumeration_literal__identifier
+  | CHARACTER_LITERAL   # enumeration_literal__Character_Literal
   ;
 
 enumeration_type_definition
@@ -899,11 +899,11 @@ library_unit
   ;
 
 literal
-  : NULL
-  | BIT_STRING_LITERAL
-  | STRING_LITERAL
-  | enumeration_literal
-  | numeric_literal
+  : NULL                    # literal__Null
+  | BIT_STRING_LITERAL      # literal__Bit_String_Literal
+  | STRING_LITERAL          # literal__String_Literal
+  | enumeration_literal     # literal__enumeration_literal
+  | numeric_literal         # literal__numeric_literal
   ;
 
 logical_name
@@ -1002,8 +1002,8 @@ next_statement
   ;
 
 numeric_literal
-  : abstract_literal
-  | physical_literal
+  : abstract_literal    # numeric_literal__abstract_literal
+  | physical_literal    # numeric_literal__physical_literal
   ;
 
 object_declaration
@@ -1101,12 +1101,12 @@ port_map_aspect
   ;
 
 primary
-  : literal
-  | qualified_expression
-  | LPAREN expression RPAREN
-  | allocator
-  | aggregate
-  | name
+  : literal                     # primary__literal
+  | qualified_expression        # primary__qualified_expression
+  | LPAREN expression RPAREN    # primary__expression
+  | allocator                   # primary__allocator
+  | aggregate                   # primary__aggregate
+  | name                        # primary__name
   ;
 
 primary_unit

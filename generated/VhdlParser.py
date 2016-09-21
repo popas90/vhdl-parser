@@ -9263,30 +9263,63 @@ class VhdlParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def identifier(self):
-            return self.getTypedRuleContext(VhdlParser.IdentifierContext,0)
-
-
-        def CHARACTER_LITERAL(self):
-            return self.getToken(VhdlParser.CHARACTER_LITERAL, 0)
 
         def getRuleIndex(self):
             return VhdlParser.RULE_enumeration_literal
 
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class Enumeration_literal__identifierContext(Enumeration_literalContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.Enumeration_literalContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def identifier(self):
+            return self.getTypedRuleContext(VhdlParser.IdentifierContext,0)
+
+
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterEnumeration_literal" ):
-                listener.enterEnumeration_literal(self)
+            if hasattr( listener, "enterEnumeration_literal__identifier" ):
+                listener.enterEnumeration_literal__identifier(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitEnumeration_literal" ):
-                listener.exitEnumeration_literal(self)
+            if hasattr( listener, "exitEnumeration_literal__identifier" ):
+                listener.exitEnumeration_literal__identifier(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitEnumeration_literal" ):
-                return visitor.visitEnumeration_literal(self)
+            if hasattr( visitor, "visitEnumeration_literal__identifier" ):
+                return visitor.visitEnumeration_literal__identifier(self)
             else:
                 return visitor.visitChildren(self)
 
+
+    class Enumeration_literal__Character_LiteralContext(Enumeration_literalContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.Enumeration_literalContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def CHARACTER_LITERAL(self):
+            return self.getToken(VhdlParser.CHARACTER_LITERAL, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterEnumeration_literal__Character_Literal" ):
+                listener.enterEnumeration_literal__Character_Literal(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitEnumeration_literal__Character_Literal" ):
+                listener.exitEnumeration_literal__Character_Literal(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitEnumeration_literal__Character_Literal" ):
+                return visitor.visitEnumeration_literal__Character_Literal(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -9298,11 +9331,13 @@ class VhdlParser ( Parser ):
             self.state = 1243
             token = self._input.LA(1)
             if token in [VhdlParser.BASIC_IDENTIFIER, VhdlParser.EXTENDED_IDENTIFIER]:
+                localctx = VhdlParser.Enumeration_literal__identifierContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 1241
                 self.identifier()
 
             elif token in [VhdlParser.CHARACTER_LITERAL]:
+                localctx = VhdlParser.Enumeration_literal__Character_LiteralContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1242
                 self.match(VhdlParser.CHARACTER_LITERAL)
@@ -12684,40 +12719,136 @@ class VhdlParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def NULL(self):
-            return self.getToken(VhdlParser.NULL, 0)
+
+        def getRuleIndex(self):
+            return VhdlParser.RULE_literal
+
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class Literal__Bit_String_LiteralContext(LiteralContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.LiteralContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def BIT_STRING_LITERAL(self):
             return self.getToken(VhdlParser.BIT_STRING_LITERAL, 0)
 
-        def STRING_LITERAL(self):
-            return self.getToken(VhdlParser.STRING_LITERAL, 0)
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterLiteral__Bit_String_Literal" ):
+                listener.enterLiteral__Bit_String_Literal(self)
 
-        def enumeration_literal(self):
-            return self.getTypedRuleContext(VhdlParser.Enumeration_literalContext,0)
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitLiteral__Bit_String_Literal" ):
+                listener.exitLiteral__Bit_String_Literal(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLiteral__Bit_String_Literal" ):
+                return visitor.visitLiteral__Bit_String_Literal(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class Literal__numeric_literalContext(LiteralContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.LiteralContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def numeric_literal(self):
             return self.getTypedRuleContext(VhdlParser.Numeric_literalContext,0)
 
 
-        def getRuleIndex(self):
-            return VhdlParser.RULE_literal
-
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLiteral" ):
-                listener.enterLiteral(self)
+            if hasattr( listener, "enterLiteral__numeric_literal" ):
+                listener.enterLiteral__numeric_literal(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLiteral" ):
-                listener.exitLiteral(self)
+            if hasattr( listener, "exitLiteral__numeric_literal" ):
+                listener.exitLiteral__numeric_literal(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLiteral" ):
-                return visitor.visitLiteral(self)
+            if hasattr( visitor, "visitLiteral__numeric_literal" ):
+                return visitor.visitLiteral__numeric_literal(self)
             else:
                 return visitor.visitChildren(self)
 
+
+    class Literal__enumeration_literalContext(LiteralContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.LiteralContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def enumeration_literal(self):
+            return self.getTypedRuleContext(VhdlParser.Enumeration_literalContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterLiteral__enumeration_literal" ):
+                listener.enterLiteral__enumeration_literal(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitLiteral__enumeration_literal" ):
+                listener.exitLiteral__enumeration_literal(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLiteral__enumeration_literal" ):
+                return visitor.visitLiteral__enumeration_literal(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class Literal__String_LiteralContext(LiteralContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.LiteralContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def STRING_LITERAL(self):
+            return self.getToken(VhdlParser.STRING_LITERAL, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterLiteral__String_Literal" ):
+                listener.enterLiteral__String_Literal(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitLiteral__String_Literal" ):
+                listener.exitLiteral__String_Literal(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLiteral__String_Literal" ):
+                return visitor.visitLiteral__String_Literal(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class Literal__NullContext(LiteralContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.LiteralContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def NULL(self):
+            return self.getToken(VhdlParser.NULL, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterLiteral__Null" ):
+                listener.enterLiteral__Null(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitLiteral__Null" ):
+                listener.exitLiteral__Null(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLiteral__Null" ):
+                return visitor.visitLiteral__Null(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -12729,26 +12860,31 @@ class VhdlParser ( Parser ):
             self.state = 1624
             token = self._input.LA(1)
             if token in [VhdlParser.NULL]:
+                localctx = VhdlParser.Literal__NullContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 1619
                 self.match(VhdlParser.NULL)
 
             elif token in [VhdlParser.BIT_STRING_LITERAL]:
+                localctx = VhdlParser.Literal__Bit_String_LiteralContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1620
                 self.match(VhdlParser.BIT_STRING_LITERAL)
 
             elif token in [VhdlParser.STRING_LITERAL]:
+                localctx = VhdlParser.Literal__String_LiteralContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
                 self.state = 1621
                 self.match(VhdlParser.STRING_LITERAL)
 
             elif token in [VhdlParser.BASIC_IDENTIFIER, VhdlParser.EXTENDED_IDENTIFIER, VhdlParser.CHARACTER_LITERAL]:
+                localctx = VhdlParser.Literal__enumeration_literalContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
                 self.state = 1622
                 self.enumeration_literal()
 
             elif token in [VhdlParser.BASE_LITERAL, VhdlParser.REAL_LITERAL, VhdlParser.INTEGER]:
+                localctx = VhdlParser.Literal__numeric_literalContext(self, localctx)
                 self.enterOuterAlt(localctx, 5)
                 self.state = 1623
                 self.numeric_literal()
@@ -13935,31 +14071,64 @@ class VhdlParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def abstract_literal(self):
-            return self.getTypedRuleContext(VhdlParser.Abstract_literalContext,0)
 
+        def getRuleIndex(self):
+            return VhdlParser.RULE_numeric_literal
+
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class Numeric_literal__physical_literalContext(Numeric_literalContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.Numeric_literalContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def physical_literal(self):
             return self.getTypedRuleContext(VhdlParser.Physical_literalContext,0)
 
 
-        def getRuleIndex(self):
-            return VhdlParser.RULE_numeric_literal
-
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterNumeric_literal" ):
-                listener.enterNumeric_literal(self)
+            if hasattr( listener, "enterNumeric_literal__physical_literal" ):
+                listener.enterNumeric_literal__physical_literal(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitNumeric_literal" ):
-                listener.exitNumeric_literal(self)
+            if hasattr( listener, "exitNumeric_literal__physical_literal" ):
+                listener.exitNumeric_literal__physical_literal(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitNumeric_literal" ):
-                return visitor.visitNumeric_literal(self)
+            if hasattr( visitor, "visitNumeric_literal__physical_literal" ):
+                return visitor.visitNumeric_literal__physical_literal(self)
             else:
                 return visitor.visitChildren(self)
 
+
+    class Numeric_literal__abstract_literalContext(Numeric_literalContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.Numeric_literalContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def abstract_literal(self):
+            return self.getTypedRuleContext(VhdlParser.Abstract_literalContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterNumeric_literal__abstract_literal" ):
+                listener.enterNumeric_literal__abstract_literal(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitNumeric_literal__abstract_literal" ):
+                listener.exitNumeric_literal__abstract_literal(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitNumeric_literal__abstract_literal" ):
+                return visitor.visitNumeric_literal__abstract_literal(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -13972,12 +14141,14 @@ class VhdlParser ( Parser ):
             self._errHandler.sync(self);
             la_ = self._interp.adaptivePredict(self._input,179,self._ctx)
             if la_ == 1:
+                localctx = VhdlParser.Numeric_literal__abstract_literalContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 1738
                 self.abstract_literal()
                 pass
 
             elif la_ == 2:
+                localctx = VhdlParser.Numeric_literal__physical_literalContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1739
                 self.physical_literal()
@@ -15230,53 +15401,168 @@ class VhdlParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def literal(self):
-            return self.getTypedRuleContext(VhdlParser.LiteralContext,0)
 
+        def getRuleIndex(self):
+            return VhdlParser.RULE_primary
+
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class Primary__qualified_expressionContext(PrimaryContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.PrimaryContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def qualified_expression(self):
             return self.getTypedRuleContext(VhdlParser.Qualified_expressionContext,0)
 
 
-        def LPAREN(self):
-            return self.getToken(VhdlParser.LPAREN, 0)
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterPrimary__qualified_expression" ):
+                listener.enterPrimary__qualified_expression(self)
 
-        def expression(self):
-            return self.getTypedRuleContext(VhdlParser.ExpressionContext,0)
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitPrimary__qualified_expression" ):
+                listener.exitPrimary__qualified_expression(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPrimary__qualified_expression" ):
+                return visitor.visitPrimary__qualified_expression(self)
+            else:
+                return visitor.visitChildren(self)
 
 
-        def RPAREN(self):
-            return self.getToken(VhdlParser.RPAREN, 0)
+    class Primary__aggregateContext(PrimaryContext):
 
-        def allocator(self):
-            return self.getTypedRuleContext(VhdlParser.AllocatorContext,0)
-
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.PrimaryContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def aggregate(self):
             return self.getTypedRuleContext(VhdlParser.AggregateContext,0)
 
 
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterPrimary__aggregate" ):
+                listener.enterPrimary__aggregate(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitPrimary__aggregate" ):
+                listener.exitPrimary__aggregate(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPrimary__aggregate" ):
+                return visitor.visitPrimary__aggregate(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class Primary__literalContext(PrimaryContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.PrimaryContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def literal(self):
+            return self.getTypedRuleContext(VhdlParser.LiteralContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterPrimary__literal" ):
+                listener.enterPrimary__literal(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitPrimary__literal" ):
+                listener.exitPrimary__literal(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPrimary__literal" ):
+                return visitor.visitPrimary__literal(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class Primary__nameContext(PrimaryContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.PrimaryContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
         def name(self):
             return self.getTypedRuleContext(VhdlParser.NameContext,0)
 
 
-        def getRuleIndex(self):
-            return VhdlParser.RULE_primary
-
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPrimary" ):
-                listener.enterPrimary(self)
+            if hasattr( listener, "enterPrimary__name" ):
+                listener.enterPrimary__name(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPrimary" ):
-                listener.exitPrimary(self)
+            if hasattr( listener, "exitPrimary__name" ):
+                listener.exitPrimary__name(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitPrimary" ):
-                return visitor.visitPrimary(self)
+            if hasattr( visitor, "visitPrimary__name" ):
+                return visitor.visitPrimary__name(self)
             else:
                 return visitor.visitChildren(self)
 
+
+    class Primary__expressionContext(PrimaryContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.PrimaryContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def LPAREN(self):
+            return self.getToken(VhdlParser.LPAREN, 0)
+        def expression(self):
+            return self.getTypedRuleContext(VhdlParser.ExpressionContext,0)
+
+        def RPAREN(self):
+            return self.getToken(VhdlParser.RPAREN, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterPrimary__expression" ):
+                listener.enterPrimary__expression(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitPrimary__expression" ):
+                listener.exitPrimary__expression(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPrimary__expression" ):
+                return visitor.visitPrimary__expression(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class Primary__allocatorContext(PrimaryContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a VhdlParser.PrimaryContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def allocator(self):
+            return self.getTypedRuleContext(VhdlParser.AllocatorContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterPrimary__allocator" ):
+                listener.enterPrimary__allocator(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitPrimary__allocator" ):
+                listener.exitPrimary__allocator(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPrimary__allocator" ):
+                return visitor.visitPrimary__allocator(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -15289,18 +15575,21 @@ class VhdlParser ( Parser ):
             self._errHandler.sync(self);
             la_ = self._interp.adaptivePredict(self._input,193,self._ctx)
             if la_ == 1:
+                localctx = VhdlParser.Primary__literalContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 1864
                 self.literal()
                 pass
 
             elif la_ == 2:
+                localctx = VhdlParser.Primary__qualified_expressionContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 1865
                 self.qualified_expression()
                 pass
 
             elif la_ == 3:
+                localctx = VhdlParser.Primary__expressionContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
                 self.state = 1866
                 self.match(VhdlParser.LPAREN)
@@ -15311,18 +15600,21 @@ class VhdlParser ( Parser ):
                 pass
 
             elif la_ == 4:
+                localctx = VhdlParser.Primary__allocatorContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
                 self.state = 1870
                 self.allocator()
                 pass
 
             elif la_ == 5:
+                localctx = VhdlParser.Primary__aggregateContext(self, localctx)
                 self.enterOuterAlt(localctx, 5)
                 self.state = 1871
                 self.aggregate()
                 pass
 
             elif la_ == 6:
+                localctx = VhdlParser.Primary__nameContext(self, localctx)
                 self.enterOuterAlt(localctx, 6)
                 self.state = 1872
                 self.name()
