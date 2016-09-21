@@ -1,5 +1,5 @@
 *.class
-generated/
+generated/*
 nosetests.json
 cover/
 .flake8rc
