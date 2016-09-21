@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o errexit
 
 if [ "$#" -eq "0" ]; then
   echo "Setting up ANTLR in default location /usr/local/lib ..."
