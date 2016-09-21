@@ -7,7 +7,7 @@ install:
   - pip install -r requirements.txt
 ##Run tests
 script:
-  - ./setup.sh
+  - ./setup.sh --local
   - ./build.sh
   - ./run_tests_full.sh
 notifications:
