@@ -1,3 +1,4 @@
+import nose
 from antlr4 import FileStream, CommonTokenStream, InputStream
 from generated.VhdlLexer import VhdlLexer
 from generated.VhdlParser import VhdlParser
@@ -43,3 +44,11 @@ def parse_string(input_string, start_rule='design_file', global_state=False):
     input_stream = InputStream(input_string)
     parser, visitor = _setup_parser_visitor(input_stream)
     return _run_rule(parser, visitor, start_rule, global_state)
+
+
+def check_visitor_return(input_str, rule, expected):
+    """Checks the result returned by running the visitor for the specified
+    rule, with the given input. Compares the return value with expected.
+    """
+    visit_result = parse_string(input_str, rule)
+    nose.tools.eq_(expected, visit_result)

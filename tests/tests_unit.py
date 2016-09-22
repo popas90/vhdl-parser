@@ -17,47 +17,32 @@ def test_entity_declaration_empty():
 
 def test_generic_declaration():
     generic = 'kDepth : natural'
-    visit_result = helpers.parse_string(generic,
-                                        'interface_constant_declaration')
-    nose.tools.eq_([Generic('kDepth', 'natural')], visit_result)
+    helpers.check_visitor_return(generic, 'interface_constant_declaration',
+                                 [Generic('kDepth', 'natural')])
 
 
 def test_abstract_literal():
     # ignoring BASE_LITERAL option for now
-    literal = '22'
-    visit_result = helpers.parse_string(literal, 'abstract_literal')
-    nose.tools.eq_('22', visit_result)
-    literal = '22.33'
-    visit_result = helpers.parse_string(literal, 'abstract_literal')
-    nose.tools.eq_('22.33', visit_result)
+    helpers.check_visitor_return('22', 'abstract_literal', '22')
+    helpers.check_visitor_return('22.33', 'abstract_literal', '22.33')
 
 
 def test_numeric_literal():
     # ignoring PHYSICAL_LITERAL option for now
-    literal = '52.3'
-    visit_result = helpers.parse_string(literal, 'numeric_literal')
-    nose.tools.eq_('52.3', visit_result)
+    helpers.check_visitor_return('52.3', 'numeric_literal', '52.3')
 
 
 def test_literal():
-    literal = 'nULl'
-    visit_result = helpers.parse_string(literal, 'literal')
-    nose.tools.eq_('nULl', visit_result)
-    literal = 'b1010'
-    visit_result = helpers.parse_string(literal, 'literal')
-    nose.tools.eq_('b1010', visit_result)
-    literal = '1019'
-    visit_result = helpers.parse_string(literal, 'literal')
-    nose.tools.eq_('1019', visit_result)
-    literal = 'h1A1F'
-    visit_result = helpers.parse_string(literal, 'literal')
-    nose.tools.eq_('h1A1F', visit_result)
+    helpers.check_visitor_return('nULl', 'literal', 'nULl')
+    helpers.check_visitor_return('b1010', 'literal', 'b1010')
+    helpers.check_visitor_return('1019', 'literal', '1019')
+    helpers.check_visitor_return('h1A1F', 'literal', 'h1A1F')
 
 
 def test_enumeration_literal():
-    literal = 'this'
-    visit_result = helpers.parse_string(literal, 'enumeration_literal')
-    nose.tools.eq_('this', visit_result)
-    literal = "'l'"
-    visit_result = helpers.parse_string(literal, 'enumeration_literal')
-    nose.tools.eq_("'l'", visit_result)
+    helpers.check_visitor_return('this', 'enumeration_literal', 'this')
+    helpers.check_visitor_return("'l'",  'enumeration_literal', "'l'")
+
+
+def test_primary():
+    helpers.check_visitor_return('b1011', 'primary', 'b1011')
