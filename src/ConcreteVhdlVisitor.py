@@ -19,8 +19,7 @@ class ConcreteVhdlVisitor(VhdlVisitor):
             return ctx.PLUS().getText()
         if ctx.MINUS():
             return ctx.MINUS().getText()
-        if ctx.AMPERSAND():
-            return ctx.AMPERSAND().getText()
+        return ctx.AMPERSAND().getText()
 
     def visitDirection(self, ctx):
         if ctx.TO():
@@ -67,8 +66,7 @@ class ConcreteVhdlVisitor(VhdlVisitor):
             return ctx.NOR().getText().lower()
         if ctx.XOR():
             return ctx.XOR().getText().lower()
-        if ctx.XNOR():
-            return ctx.XNOR().getText().lower()
+        return ctx.XNOR().getText().lower()
 
     def visitMultiplying_operator(self, ctx):
         if ctx.MUL():
@@ -77,8 +75,7 @@ class ConcreteVhdlVisitor(VhdlVisitor):
             return ctx.DIV().getText()
         if ctx.MOD():
             return ctx.MOD().getText().lower()
-        if ctx.REM():
-            return ctx.REM().getText().lower()
+        return ctx.REM().getText().lower()
 
     def visitName__name_part(self, ctx):
         parts = ''
@@ -101,8 +98,7 @@ class ConcreteVhdlVisitor(VhdlVisitor):
             return ctx.LE().getText().lower()
         if ctx.GREATERTHAN():
             return ctx.GREATERTHAN().getText().lower()
-        if ctx.GE():
-            return ctx.GE().getText().lower()
+        return ctx.GE().getText().lower()
 
     def visitSelected_name(self, ctx):
         string = self.visit(ctx.identifier())
@@ -122,8 +118,7 @@ class ConcreteVhdlVisitor(VhdlVisitor):
             return ctx.SRA().getText().lower()
         if ctx.ROR():
             return ctx.ROR().getText().lower()
-        if ctx.ROL():
-            return ctx.ROL().getText().lower()
+        return ctx.ROL().getText().lower()
 
     def visitSubtype_indication(self, ctx):
         subtype = [self.visit(sel_name) for sel_name in ctx.selected_name()]

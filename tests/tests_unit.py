@@ -56,35 +56,35 @@ def test_direction():
 
 
 def test_shift_operator():
-    operators = ['SLL', 'srl', 'SLa', 'sra', 'ROR', 'ROL', 'RRR']
-    results = ['sll', 'srl', 'sla', 'sra', 'ror', 'rol', None]
+    operators = ['SLL', 'srl', 'SLa', 'sra', 'ROR', 'ROL']
+    results = ['sll', 'srl', 'sla', 'sra', 'ror', 'rol']
     for (op, res) in zip(operators, results):
         check_visitor_return(op, 'shift_operator', res)
 
 
 def test_relational_operator():
-    operators = ['=', '/=', '<', '<=', '>', '>=', 'ff']
-    results = ['=', '/=', '<', '<=', '>', '>=', None]
+    operators = ['=', '/=', '<', '<=', '>', '>=']
+    results = ['=', '/=', '<', '<=', '>', '>=']
     for (op, res) in zip(operators, results):
         check_visitor_return(op, 'relational_operator', res)
 
 
 def test_logical_operator():
-    operators = ['and', 'OR', 'nand', 'NoR', 'XOR', 'xnor', 'ff']
-    results = ['and', 'or', 'nand', 'nor', 'xor', 'xnor', None]
+    operators = ['and', 'OR', 'nand', 'NoR', 'XOR', 'xnor']
+    results = ['and', 'or', 'nand', 'nor', 'xor', 'xnor']
     for (op, res) in zip(operators, results):
         check_visitor_return(op, 'logical_operator', res)
 
 
 def test_adding_operator():
-    operators = ['+', '-', '&', 'ff']
-    results = ['+', '-', '&', None]
+    operators = ['+', '-', '&']
+    results = ['+', '-', '&']
     for (op, res) in zip(operators, results):
         check_visitor_return(op, 'adding_operator', res)
 
 
 def test_multiplying_operator():
-    operators = ['*', '/', 'mod', 'REM', 'ff']
-    results = ['*', '/', 'mod', 'rem', None]
+    operators = ['*', '/', 'mod', 'REM']
+    results = ['*', '/', 'mod', 'rem']
     for (op, res) in zip(operators, results):
         check_visitor_return(op, 'multiplying_operator', res)
