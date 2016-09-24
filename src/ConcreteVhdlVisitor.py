@@ -28,8 +28,7 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def visitIdentifier(self, ctx):
         if ctx.BASIC_IDENTIFIER():
             return ctx.BASIC_IDENTIFIER().getText()
-        else:
-            return ctx.EXTENDED_IDENTIFIER().getText()
+        return ctx.EXTENDED_IDENTIFIER().getText()
 
     def visitIdentifier_list(self, ctx):
         return [self.visit(ident) for ident in ctx.identifier()]
@@ -49,6 +48,20 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def visitLiteral__enumeration_literal(self, ctx):
         return self.visit(ctx.enumeration_literal()).lower()
 
+    def visitLogical_operator(self, ctx):
+        if ctx.AND():
+            return ctx.AND().getText().lower()
+        if ctx.OR():
+            return ctx.OR().getText().lower()
+        if ctx.NAND():
+            return ctx.NAND().getText().lower()
+        if ctx.NOR():
+            return ctx.NOR().getText().lower()
+        if ctx.XOR():
+            return ctx.XOR().getText().lower()
+        if ctx.XNOR():
+            return ctx.XNOR().getText().lower()
+
     def visitName__name_part(self, ctx):
         parts = ''
         for part in ctx.name_part():
@@ -58,6 +71,20 @@ class ConcreteVhdlVisitor(VhdlVisitor):
 
     def visitName__selected_name(self, ctx):
         return self.visit(ctx.selected_name())
+
+    def visitRelational_operator(self, ctx):
+        if ctx.EQ():
+            return ctx.EQ().getText().lower()
+        if ctx.NEQ():
+            return ctx.NEQ().getText().lower()
+        if ctx.LOWERTHAN():
+            return ctx.LOWERTHAN().getText().lower()
+        if ctx.LE():
+            return ctx.LE().getText().lower()
+        if ctx.GREATERTHAN():
+            return ctx.GREATERTHAN().getText().lower()
+        if ctx.GE():
+            return ctx.GE().getText().lower()
 
     def visitSelected_name(self, ctx):
         string = self.visit(ctx.identifier())

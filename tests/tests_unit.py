@@ -60,3 +60,17 @@ def test_shift_operator():
     results = ['sll', 'srl', 'sla', 'sra', 'ror', 'rol', None]
     for (op, res) in zip(operators, results):
         check_visitor_return(op, 'shift_operator', res)
+
+
+def test_relational_operator():
+    operators = ['=', '/=', '<', '<=', '>', '>=', 'ff']
+    results = ['=', '/=', '<', '<=', '>', '>=', None]
+    for (op, res) in zip(operators, results):
+        check_visitor_return(op, 'relational_operator', res)
+
+
+def test_logical_operator():
+    operators = ['and', 'OR', 'nand', 'NoR', 'XOR', 'xnor', 'ff']
+    results = ['and', 'or', 'nand', 'nor', 'xor', 'xnor', None]
+    for (op, res) in zip(operators, results):
+        check_visitor_return(op, 'logical_operator', res)
