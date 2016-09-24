@@ -66,6 +66,20 @@ class ConcreteVhdlVisitor(VhdlVisitor):
                 string += '.' + self.visit(suf)
         return string
 
+    def visitShift_operator(self, ctx):
+        if ctx.SLL():
+            return ctx.SLL().getText().lower()
+        if ctx.SRL():
+            return ctx.SRL().getText().lower()
+        if ctx.SLA():
+            return ctx.SLA().getText().lower()
+        if ctx.SRA():
+            return ctx.SRA().getText().lower()
+        if ctx.ROR():
+            return ctx.ROR().getText().lower()
+        if ctx.ROL():
+            return ctx.ROL().getText().lower()
+
     def visitSubtype_indication(self, ctx):
         subtype = [self.visit(sel_name) for sel_name in ctx.selected_name()]
         if (ctx.constraint()):
