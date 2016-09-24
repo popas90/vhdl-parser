@@ -14,6 +14,14 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def visitAbstract_literal__Real_Literal(self, ctx):
         return ctx.REAL_LITERAL().getText()
 
+    def visitAdding_operator(self, ctx):
+        if ctx.PLUS():
+            return ctx.PLUS().getText()
+        if ctx.MINUS():
+            return ctx.MINUS().getText()
+        if ctx.AMPERSAND():
+            return ctx.AMPERSAND().getText()
+
     def visitDirection(self, ctx):
         if ctx.TO():
             return ctx.TO().getText().lower()
@@ -61,6 +69,16 @@ class ConcreteVhdlVisitor(VhdlVisitor):
             return ctx.XOR().getText().lower()
         if ctx.XNOR():
             return ctx.XNOR().getText().lower()
+
+    def visitMultiplying_operator(self, ctx):
+        if ctx.MUL():
+            return ctx.MUL().getText()
+        if ctx.DIV():
+            return ctx.DIV().getText()
+        if ctx.MOD():
+            return ctx.MOD().getText().lower()
+        if ctx.REM():
+            return ctx.REM().getText().lower()
 
     def visitName__name_part(self, ctx):
         parts = ''

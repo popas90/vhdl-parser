@@ -74,3 +74,17 @@ def test_logical_operator():
     results = ['and', 'or', 'nand', 'nor', 'xor', 'xnor', None]
     for (op, res) in zip(operators, results):
         check_visitor_return(op, 'logical_operator', res)
+
+
+def test_adding_operator():
+    operators = ['+', '-', '&', 'ff']
+    results = ['+', '-', '&', None]
+    for (op, res) in zip(operators, results):
+        check_visitor_return(op, 'adding_operator', res)
+
+
+def test_multiplying_operator():
+    operators = ['*', '/', 'mod', 'REM', 'ff']
+    results = ['*', '/', 'mod', 'rem', None]
+    for (op, res) in zip(operators, results):
+        check_visitor_return(op, 'multiplying_operator', res)
