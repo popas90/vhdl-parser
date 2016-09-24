@@ -17,3 +17,5 @@ ANTLR-based VHDL parser.
   - then, source bash:
     `$ . ~/.bashrc`
   - new commands `antlr4` and `grun` are now available
+  - run `build.sh` with sudo - it generates the ANTLR lexer and parser
+  - run the full test suite with `run_tests_full.sh`
