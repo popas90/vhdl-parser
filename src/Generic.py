@@ -6,7 +6,11 @@ class Generic:
         self.init_value = init_value
 
     def __repr__(self):
-        return 'Generic: ' + str(self.__dict__)
+        # TODO rewrite this with format
+        return 'Generic: {' + \
+            "name: '" + str(self.name) + "', " + \
+            "type: '" + str(self.type) + "', " + \
+            "init_value: '" + str(self.init_value) + "'}"
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__

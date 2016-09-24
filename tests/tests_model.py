@@ -57,3 +57,8 @@ class TestGeneric:
         generic3 = Generic('kDepth', 'integer', '3')
         ok_(generic1 == generic2)
         ok_(generic1 != generic3)
+
+    def test_repr(self):
+        generic = Generic('kAll', 'integer', '3')
+        eq_("Generic: {name: 'kAll', type: 'integer', init_value: '3'}",
+            str(generic))

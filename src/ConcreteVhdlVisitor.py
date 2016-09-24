@@ -14,8 +14,13 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def visitAbstract_literal__Real_Literal(self, ctx):
         return ctx.REAL_LITERAL().getText()
 
+    def visitDirection(self, ctx):
+        if ctx.TO():
+            return ctx.TO().getText().lower()
+        return ctx.DOWNTO().getText().lower()
+
     def visitEnumeration_literal__Character_Literal(self, ctx):
-        return ctx.CHARACTER_LITERAL().getText()
+        return ctx.CHARACTER_LITERAL().getText().lower()
 
     def visitEntity_declaration(self, ctx):
         self.entities.append(Entity(self.visit(ctx.identifier()[0])))
@@ -35,8 +40,14 @@ class ConcreteVhdlVisitor(VhdlVisitor):
         generics = [Generic(ident, type_ind) for ident in identifiers]
         return generics
 
+    def visitLiteral__Bit_String_Literal(self, ctx):
+        return ctx.BIT_STRING_LITERAL().getText().lower()
+
     def visitLiteral__Null(self, ctx):
-        return ctx.NULL().getText()
+        return ctx.NULL().getText().lower()
+
+    def visitLiteral__enumeration_literal(self, ctx):
+        return self.visit(ctx.enumeration_literal()).lower()
 
     def visitName__name_part(self, ctx):
         parts = ''

@@ -33,10 +33,12 @@ def test_numeric_literal():
 
 
 def test_literal():
-    helpers.check_visitor_return('nULl', 'literal', 'nULl')
+    helpers.check_visitor_return('nULl', 'literal', 'null')
     helpers.check_visitor_return('b1010', 'literal', 'b1010')
+    helpers.check_visitor_return('B"1010"', 'literal', 'b"1010"')
     helpers.check_visitor_return('1019', 'literal', '1019')
-    helpers.check_visitor_return('h1A1F', 'literal', 'h1A1F')
+    helpers.check_visitor_return('hC1A1F', 'literal', 'hc1a1f')
+    helpers.check_visitor_return('xAABB', 'literal', 'xaabb')
 
 
 def test_enumeration_literal():
@@ -46,3 +48,8 @@ def test_enumeration_literal():
 
 def test_primary():
     helpers.check_visitor_return('b1011', 'primary', 'b1011')
+
+
+def test_direction():
+    helpers.check_visitor_return('to', 'direction', 'to')
+    helpers.check_visitor_return('DOWNTO', 'direction', 'downto')
