@@ -1,7 +1,9 @@
 from src.Entity import Entity
 from src.Port import Port
 from src.Generic import Generic
-from nose.tools import eq_, ok_
+from src.Operand import Operand
+from src.Expression import Expression
+from nose.tools import eq_, ok_, raises
 
 
 class TestEntity:
@@ -62,3 +64,50 @@ class TestGeneric:
         generic = Generic('kAll', 'integer', '3')
         eq_("Generic: {name: 'kAll', type: 'integer', init_value: '3'}",
             str(generic))
+
+
+class TestOperand:
+
+    def test_str(self):
+        operand = Operand('-23')
+        eq_('-23', str(operand))
+
+    def test_eval(self):
+        operand = Operand('-23.02')
+        eq_(-23.02, operand.eval())
+        operand = Operand('25')
+        eq_(25, operand.eval())
+
+
+class TestExpression:
+
+    def test_str(self):
+        op1 = Operand('-2')
+        op2 = Operand('3')
+        expr = Expression(op1, op2, '+')
+        eq_('-2 + 3', str(expr))
+
+    def test_eval(self):
+        op1 = Operand('-2')
+        op2 = Operand('3')
+        op3 = Operand('4')
+        op4 = Operand('2')
+        expr1 = Expression(op1, op2, '+')
+        eq_(1, expr1.eval())
+        expr2 = Expression(expr1, op2, '*')
+        eq_(3, expr2.eval())
+        expr3 = Expression(expr2, expr1, '-')
+        eq_(2, expr3.eval())
+        expr4 = Expression(op3, expr2, '/')
+        eq_(float(4/3), expr4.eval())
+        expr5 = Expression(op3, op4, 'mod')
+        eq_(2, expr5.eval())
+        expr6 = Expression(op3, op4, 'rem')
+        eq_(0, expr6.eval())
+
+    @raises(ValueError)
+    def test_eval_error(self):
+        op1 = Operand('-2')
+        op2 = Operand('3')
+        expr1 = Expression(op1, op2, 'and')
+        eq_(1, expr1.eval())

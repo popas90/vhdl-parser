@@ -112,3 +112,11 @@ class TestVisitor:
         when(str_lit).getText().thenReturn('"str"')
         when(self._ctx).STRING_LITERAL().thenReturn(str_lit)
         eq_('"str"', self._visitor.visitSuffix__String_Literal(self._ctx))
+
+    # def test_simple_expression(self):
+    #     sign = mock()
+    #     when(sign).getText().thenReturn('+')
+    #     when(self._ctx).PLUS().thenReturn(sign)
+    #     when(self._ctx).term().thenReturn(self._mock_list_for_visit('ident'))
+    #     # TODO
+    #     eq_('"str"', self._visitor.visitSimple_expression(self._ctx))
