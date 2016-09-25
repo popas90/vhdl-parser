@@ -1,5 +1,6 @@
 # vhdl-parser
 [![Build Status](https://travis-ci.org/popas90/vhdl-parser.svg?branch=master)](https://travis-ci.org/popas90/vhdl-parser)
+
 ANTLR-based VHDL parser.
 
 ### Development setup:

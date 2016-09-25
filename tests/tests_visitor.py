@@ -125,3 +125,6 @@ class TestVisitor:
         eq_(Operand('+3'), self._visitor.visitSimple_expression(self._ctx))
         when(self._ctx).PLUS().thenReturn(None)
         eq_(Operand('-3'), self._visitor.visitSimple_expression(self._ctx))
+        when(self._ctx).term().thenReturn(self._mock_list_for_visit('3', '2'))
+        when(self._ctx).adding_operator(self._mock_list_for_visit('-'))
+        eq_(-5, self._visitor.visitSimple_expression(self._ctx).evaluate())
