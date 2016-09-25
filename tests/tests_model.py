@@ -78,6 +78,11 @@ class TestOperand:
         operand = Operand('25')
         eq_(25, operand.eval())
 
+    @raises(ValueError)
+    def test_eval_error(self):
+        operand = Operand('-23.02a')
+        eq_(-23.02, operand.eval())
+
 
 class TestExpression:
 
