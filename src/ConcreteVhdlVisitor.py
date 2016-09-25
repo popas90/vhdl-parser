@@ -1,6 +1,7 @@
 from generated.VhdlVisitor import VhdlVisitor
 from .Entity import Entity
 from .Generic import Generic
+from .Operand import Operand
 
 
 class ConcreteVhdlVisitor(VhdlVisitor):
@@ -119,6 +120,11 @@ class ConcreteVhdlVisitor(VhdlVisitor):
         if ctx.ROR():
             return ctx.ROR().getText().lower()
         return ctx.ROL().getText().lower()
+
+    def visitSimple_expression(self, ctx):
+        sign = '+' if ctx.PLUS() else '-' if ctx.MINUS() else ''
+        first_term = self.visit(ctx.term(0))
+        return Operand(sign + first_term)
 
     def visitSubtype_indication(self, ctx):
         subtype = [self.visit(sel_name) for sel_name in ctx.selected_name()]

@@ -72,16 +72,27 @@ class TestOperand:
         operand = Operand('-23')
         eq_('-23', str(operand))
 
+    def test_repr(self):
+        operand = Operand('-23')
+        eq_('Operand: -23', repr(operand))
+
+    def test_eq_ne(self):
+        operand1 = Operand('+54')
+        operand2 = Operand('54')
+        operand3 = Operand('-54')
+        ok_(operand1 == operand2)
+        ok_(operand1 != operand3)
+
     def test_eval(self):
         operand = Operand('-23.02')
-        eq_(-23.02, operand.eval())
+        eq_(-23.02, operand.evaluate())
         operand = Operand('25')
-        eq_(25, operand.eval())
+        eq_(25, operand.evaluate())
 
     @raises(ValueError)
     def test_eval_error(self):
         operand = Operand('-23.02a')
-        eq_(-23.02, operand.eval())
+        eq_(-23.02, operand.evaluate())
 
 
 class TestExpression:
@@ -92,27 +103,36 @@ class TestExpression:
         expr = Expression(op1, op2, '+')
         eq_('-2 + 3', str(expr))
 
+    def test_eq_ne(self):
+        op1 = Operand('54')
+        op2 = Operand('+54')
+        expr1 = Expression(op1, op2, '+')
+        expr2 = Expression(op2, op1, '+')
+        expr3 = Expression(op1, op2, '-')
+        ok_(expr1 == expr2)
+        ok_(expr1 != expr3)
+
     def test_eval(self):
         op1 = Operand('-2')
-        op2 = Operand('3')
+        op2 = Operand('+3')
         op3 = Operand('4')
         op4 = Operand('2')
         expr1 = Expression(op1, op2, '+')
-        eq_(1, expr1.eval())
+        eq_(1, expr1.evaluate())
         expr2 = Expression(expr1, op2, '*')
-        eq_(3, expr2.eval())
+        eq_(3, expr2.evaluate())
         expr3 = Expression(expr2, expr1, '-')
-        eq_(2, expr3.eval())
+        eq_(2, expr3.evaluate())
         expr4 = Expression(op3, expr2, '/')
-        eq_(float(4/3), expr4.eval())
+        eq_(float(4/3), expr4.evaluate())
         expr5 = Expression(op3, op4, 'mod')
-        eq_(2, expr5.eval())
+        eq_(2, expr5.evaluate())
         expr6 = Expression(op3, op4, 'rem')
-        eq_(0, expr6.eval())
+        eq_(0, expr6.evaluate())
 
     @raises(ValueError)
     def test_eval_error(self):
         op1 = Operand('-2')
         op2 = Operand('3')
         expr1 = Expression(op1, op2, 'and')
-        eq_(1, expr1.eval())
+        eq_(1, expr1.evaluate())

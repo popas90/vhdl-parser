@@ -2,6 +2,7 @@ from src.ConcreteVhdlVisitor import ConcreteVhdlVisitor
 from nose.tools import eq_
 from mockito import mock, when
 from src.Generic import Generic
+from src.Operand import Operand
 
 
 class TestVisitor:
@@ -113,10 +114,14 @@ class TestVisitor:
         when(self._ctx).STRING_LITERAL().thenReturn(str_lit)
         eq_('"str"', self._visitor.visitSuffix__String_Literal(self._ctx))
 
-    # def test_simple_expression(self):
-    #     sign = mock()
-    #     when(sign).getText().thenReturn('+')
-    #     when(self._ctx).PLUS().thenReturn(sign)
-    #     when(self._ctx).term().thenReturn(self._mock_list_for_visit('ident'))
-    #     # TODO
-    #     eq_('"str"', self._visitor.visitSimple_expression(self._ctx))
+    def test_simple_expression(self):
+        plus = mock()
+        minus = mock()
+        when(plus).getText().thenReturn('+')
+        when(minus).gettermText().thenReturn('-')
+        when(self._ctx).PLUS().thenReturn(plus)
+        when(self._ctx).MINUS().thenReturn(minus)
+        when(self._ctx).term(0).thenReturn(self._mock_for_visit('3'))
+        eq_(Operand('+3'), self._visitor.visitSimple_expression(self._ctx))
+        when(self._ctx).PLUS().thenReturn(None)
+        eq_(Operand('-3'), self._visitor.visitSimple_expression(self._ctx))
