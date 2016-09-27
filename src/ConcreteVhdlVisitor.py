@@ -2,6 +2,7 @@ from generated.VhdlVisitor import VhdlVisitor
 from .Entity import Entity
 from .Generic import Generic
 from .Operand import Operand
+from .Expression import Expression
 
 
 class ConcreteVhdlVisitor(VhdlVisitor):
@@ -123,8 +124,16 @@ class ConcreteVhdlVisitor(VhdlVisitor):
 
     def visitSimple_expression(self, ctx):
         sign = '+' if ctx.PLUS() else '-' if ctx.MINUS() else ''
-        first_term = self.visit(ctx.term(0))
-        return Operand(sign + first_term)
+        first_term = ctx.term(0)
+        # terms = [self.visit(term) for term in ctx.term()]
+        prev_expr = Operand(sign + self.visit(first_term))
+        if len(ctx.term()) == 1:
+            return prev_expr
+        other_terms = ctx.term()[1:]
+        for (op, term) in zip(ctx.adding_operator(), other_terms):
+            current_op = Operand(self.visit(term))
+            prev_expr = Expression(prev_expr, current_op, self.visit(op))
+        return prev_expr
 
     def visitSubtype_indication(self, ctx):
         subtype = [self.visit(sel_name) for sel_name in ctx.selected_name()]

@@ -122,9 +122,16 @@ class TestVisitor:
         when(self._ctx).PLUS().thenReturn(plus)
         when(self._ctx).MINUS().thenReturn(minus)
         when(self._ctx).term(0).thenReturn(self._mock_for_visit('3'))
+        when(self._ctx).term().thenReturn(self._mock_list_for_visit('3'))
         eq_(Operand('+3'), self._visitor.visitSimple_expression(self._ctx))
         when(self._ctx).PLUS().thenReturn(None)
         eq_(Operand('-3'), self._visitor.visitSimple_expression(self._ctx))
         when(self._ctx).term().thenReturn(self._mock_list_for_visit('3', '2'))
-        when(self._ctx).adding_operator(self._mock_list_for_visit('-'))
+        when(self._ctx).adding_operator() \
+            .thenReturn(self._mock_list_for_visit('-'))
         eq_(-5, self._visitor.visitSimple_expression(self._ctx).evaluate())
+        when(self._ctx).term() \
+            .thenReturn(self._mock_list_for_visit('3', '2', '3'))
+        when(self._ctx).adding_operator() \
+            .thenReturn(self._mock_list_for_visit('-', '+'))
+        eq_(-2, self._visitor.visitSimple_expression(self._ctx).evaluate())
