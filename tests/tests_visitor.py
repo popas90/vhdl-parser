@@ -145,3 +145,21 @@ class TestVisitor:
         when(self._ctx).multiplying_operator() \
             .thenReturn(self._mock_list_for_visit('*'))
         eq_(6, self._visitor.visitTerm(self._ctx).evaluate())
+
+    def test_factor(self):
+        when(self._ctx).primary(0).thenReturn(self._mock_for_visit('2'))
+        eq_('2', self._visitor.visitFactor(self._ctx))
+        when(self._ctx).primary(0).thenReturn(self._mock_for_visit('3'))
+        eq_('3', self._visitor.visitFactor(self._ctx))
+        when(self._ctx).primary(1).thenReturn(self._mock_for_visit('3'))
+        eq_('3**3', self._visitor.visitFactor(self._ctx))
+        when(self._ctx).primary(1).thenReturn(None)
+        not_ = mock()
+        abs_ = mock()
+        when(not_).getText().thenReturn('not')
+        when(abs_).getText().thenReturn('abs')
+        when(self._ctx).NOT().thenReturn(not_)
+        eq_('not 3', self._visitor.visitFactor(self._ctx))
+        when(self._ctx).NOT().thenReturn(None)
+        when(self._ctx).ABS().thenReturn(abs_)
+        eq_('abs 3', self._visitor.visitFactor(self._ctx))

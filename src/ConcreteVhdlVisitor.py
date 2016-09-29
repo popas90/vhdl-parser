@@ -34,6 +34,17 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def visitEntity_declaration(self, ctx):
         self.entities.append(Entity(self.visit(ctx.identifier()[0])))
 
+    def visitFactor(self, ctx):
+        first_primary = self.visit(ctx.primary(0))
+        if ctx.NOT():
+            return ctx.NOT().getText().lower() + ' ' + first_primary
+        if ctx.ABS():
+            return ctx.ABS().getText().lower() + ' ' + first_primary
+        if ctx.primary(1):
+            return first_primary + '**' + self.visit(ctx.primary(1))
+        else:
+            return first_primary
+
     def visitIdentifier(self, ctx):
         if ctx.BASIC_IDENTIFIER():
             return ctx.BASIC_IDENTIFIER().getText()
