@@ -152,3 +152,14 @@ class ConcreteVhdlVisitor(VhdlVisitor):
 
     def visitSuffix__String_Literal(self, ctx):
         return ctx.STRING_LITERAL().getText()
+
+    def visitTerm(self, ctx):
+        first_factor = self.visit(ctx.factor(0))
+        prev_expr = Operand(first_factor)
+        if len(ctx.factor()) == 1:
+            return prev_expr
+        other_factors = ctx.factor()[1:]
+        for (op, factor) in zip(ctx.multiplying_operator(), other_factors):
+            current_op = Operand(self.visit(factor))
+            prev_expr = Expression(prev_expr, current_op, self.visit(op))
+        return prev_expr
