@@ -1101,12 +1101,12 @@ port_map_aspect
   ;
 
 primary
-  : literal                     # primary__literal
-  | qualified_expression        # primary__qualified_expression
-  | LPAREN expression RPAREN    # primary__expression
-  | allocator                   # primary__allocator
-  | aggregate                   # primary__aggregate
-  | name                        # primary__name
+  : literal                     
+  | qualified_expression        
+  | LPAREN expression RPAREN    
+  | allocator                   
+  | aggregate                   
+  | name                        
   ;
 
 primary_unit

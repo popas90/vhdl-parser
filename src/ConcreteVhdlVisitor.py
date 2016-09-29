@@ -100,6 +100,11 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def visitName__selected_name(self, ctx):
         return self.visit(ctx.selected_name())
 
+    def visitPrimary(self, ctx):
+        if ctx.expression():
+            return '(' + self.visit(ctx.expression()) + ')'
+        return self.visitChildren(ctx)
+
     def visitRelational_operator(self, ctx):
         if ctx.EQ():
             return ctx.EQ().getText().lower()

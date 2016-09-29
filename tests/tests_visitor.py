@@ -163,3 +163,7 @@ class TestVisitor:
         when(self._ctx).NOT().thenReturn(None)
         when(self._ctx).ABS().thenReturn(abs_)
         eq_('abs 3', self._visitor.visitFactor(self._ctx))
+
+    def test_primary(self):
+        when(self._ctx).expression().thenReturn(self._mock_for_visit('expr'))
+        eq_('(expr)', self._visitor.visitPrimary(self._ctx))
