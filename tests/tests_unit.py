@@ -16,9 +16,9 @@ def test_entity_declaration_empty():
 
 
 def test_generic_declaration():
-    generic = 'kDepth : natural'
+    generic = 'kDepth : natural := 8'
     check_visitor_return(generic, 'interface_constant_declaration',
-                         [Generic('kDepth', 'natural')])
+                         [Generic('kDepth', 'natural', '8')])
 
 
 def test_abstract_literal():

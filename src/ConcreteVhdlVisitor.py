@@ -34,6 +34,17 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def visitEntity_declaration(self, ctx):
         self.entities.append(Entity(self.visit(ctx.identifier()[0])))
 
+    def visitExpression(self, ctx):
+        first_expr = self.visit(ctx.relation(0))
+        prev_expr = Operand(first_expr)
+        if len(ctx.relation()) == 1:
+            return prev_expr
+        other_exprs = ctx.relation()[1:]
+        for (op, expr) in zip(ctx.logical_operator(), other_exprs):
+            current_op = Operand(self.visit(expr))
+            prev_expr = Expression(prev_expr, current_op, self.visit(op))
+        return prev_expr
+
     def visitFactor(self, ctx):
         first_primary = self.visit(ctx.primary(0))
         if ctx.NOT():
@@ -56,7 +67,10 @@ class ConcreteVhdlVisitor(VhdlVisitor):
     def visitInterface_constant_declaration(self, ctx):
         identifiers = self.visit(ctx.identifier_list())
         type_ind = ''.join(self.visit(ctx.subtype_indication()))
-        generics = [Generic(ident, type_ind) for ident in identifiers]
+        value = ''
+        if ctx.expression():
+            value = str(self.visit(ctx.expression()))
+        generics = [Generic(ident, type_ind, value) for ident in identifiers]
         return generics
 
     def visitLiteral__Bit_String_Literal(self, ctx):
@@ -105,6 +119,17 @@ class ConcreteVhdlVisitor(VhdlVisitor):
             return '(' + self.visit(ctx.expression()) + ')'
         return self.visitChildren(ctx)
 
+    def visitRelation(self, ctx):
+        first_expr = self.visit(ctx.shift_expression(0))
+        prev_expr = Operand(first_expr)
+        if len(ctx.shift_expression()) == 1:
+            return prev_expr
+        other_exprs = ctx.shift_expression()[1:]
+        for (op, expr) in zip(ctx.relational_operator(), other_exprs):
+            current_op = Operand(self.visit(expr))
+            prev_expr = Expression(prev_expr, current_op, self.visit(op))
+        return prev_expr
+
     def visitRelational_operator(self, ctx):
         if ctx.EQ():
             return ctx.EQ().getText().lower()
@@ -125,6 +150,17 @@ class ConcreteVhdlVisitor(VhdlVisitor):
                 string += '.' + self.visit(suf)
         return string
 
+    def visitShift_expression(self, ctx):
+        first_expr = self.visit(ctx.simple_expression(0))
+        prev_expr = Operand(first_expr)
+        if len(ctx.simple_expression()) == 1:
+            return prev_expr
+        other_exprs = ctx.simple_expression()[1:]
+        for (op, expr) in zip(ctx.shift_operator(), other_exprs):
+            current_op = Operand(self.visit(expr))
+            prev_expr = Expression(prev_expr, current_op, self.visit(op))
+        return prev_expr
+
     def visitShift_operator(self, ctx):
         if ctx.SLL():
             return ctx.SLL().getText().lower()
@@ -142,7 +178,7 @@ class ConcreteVhdlVisitor(VhdlVisitor):
         sign = '+' if ctx.PLUS() else '-' if ctx.MINUS() else ''
         first_term = ctx.term(0)
         # terms = [self.visit(term) for term in ctx.term()]
-        prev_expr = Operand(sign + self.visit(first_term))
+        prev_expr = Operand(sign + str(self.visit(first_term)))
         if len(ctx.term()) == 1:
             return prev_expr
         other_terms = ctx.term()[1:]

@@ -3,6 +3,7 @@ from nose.tools import eq_
 from mockito import mock, when
 from src.Generic import Generic
 from src.Operand import Operand
+from src.Expression import Expression
 
 
 class TestVisitor:
@@ -167,3 +168,42 @@ class TestVisitor:
     def test_primary(self):
         when(self._ctx).expression().thenReturn(self._mock_for_visit('expr'))
         eq_('(expr)', self._visitor.visitPrimary(self._ctx))
+
+    def test_shift_expression(self):
+        when(self._ctx).simple_expression(0) \
+            .thenReturn(self._mock_for_visit('2'))
+        when(self._ctx).simple_expression() \
+            .thenReturn(self._mock_list_for_visit('2'))
+        eq_(Operand('2'), self._visitor.visitShift_expression(self._ctx))
+        when(self._ctx).simple_expression() \
+            .thenReturn(self._mock_list_for_visit('2', '4'))
+        when(self._ctx).shift_operator() \
+            .thenReturn(self._mock_list_for_visit('sll'))
+        eq_(Expression('2', '4', 'sll'),
+            self._visitor.visitShift_expression(self._ctx))
+
+    def test_relation(self):
+        when(self._ctx).shift_expression(0) \
+            .thenReturn(self._mock_for_visit('2'))
+        when(self._ctx).shift_expression() \
+            .thenReturn(self._mock_list_for_visit('2'))
+        eq_(Operand('2'), self._visitor.visitRelation(self._ctx))
+        when(self._ctx).shift_expression() \
+            .thenReturn(self._mock_list_for_visit('2', '4'))
+        when(self._ctx).relational_operator() \
+            .thenReturn(self._mock_list_for_visit('>'))
+        eq_(Expression('2', '4', '>'),
+            self._visitor.visitRelation(self._ctx))
+
+    def test_expression(self):
+        when(self._ctx).relation(0) \
+            .thenReturn(self._mock_for_visit('2'))
+        when(self._ctx).relation() \
+            .thenReturn(self._mock_list_for_visit('2'))
+        eq_(Operand('2'), self._visitor.visitExpression(self._ctx))
+        when(self._ctx).relation() \
+            .thenReturn(self._mock_list_for_visit('2', '4'))
+        when(self._ctx).logical_operator() \
+            .thenReturn(self._mock_list_for_visit('and'))
+        eq_(Expression('2', '4', 'and'),
+            self._visitor.visitExpression(self._ctx))

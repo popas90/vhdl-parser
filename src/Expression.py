@@ -1,8 +1,11 @@
+from .Operand import Operand
+
+
 class Expression:
 
-    def __init__(self, operand1, operand2, operation):
-        self._op1 = operand1
-        self._op2 = operand2
+    def __init__(self, op1, op2, operation):
+        self._op1 = Operand(op1) if isinstance(op1, str) else op1
+        self._op2 = Operand(op2) if isinstance(op2, str) else op2
         self._oper = operation
 
     def __str__(self):
